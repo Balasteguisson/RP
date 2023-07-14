@@ -1,0 +1,7 @@
+Que necesito crear y eliminar por parte del paciente:
+1. Tratamientos
+2. Constante vital
+3. Talla y peso
+4. Grupo sanguíneo
+5. Enfermedades sufridas (diagnosticos)
+6. Intervenciones médicas recibidas
