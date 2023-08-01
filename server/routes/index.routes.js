@@ -3,9 +3,11 @@ import { pool } from '../db.js';
 
 const router = Router();
 
+
+//ping a bbdd para ver que se ha iniciado bien
 router.get('/ping', async (req, res) => {
     try {
-        const [rows, fields] = await pool.query('SELECT 1+ 1 as result');
+        const [rows, fields] = await pool.query('SELECT count(email) from USUARIOS');
         console.log(rows[0]);
         res.json('Base de datos funcionando');
     } catch {
