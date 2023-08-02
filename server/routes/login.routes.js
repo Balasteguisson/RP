@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { loginUser, signUpUser, getUsers } from '../controllers/login.controllers.js'
+import { loginUser, signUpUser, getUsers, signUpUser2 } from '../controllers/login.controllers.js'
 
 
 
@@ -14,5 +14,8 @@ router.post('/signUp', signUpUser)
 
 //ver usuarios
 router.get('/viewUsers', getUsers)
+
+
+router.post('/prueba', signUpUser2)
 
 export default router

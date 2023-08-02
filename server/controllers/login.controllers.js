@@ -15,9 +15,10 @@ export const loginUser = async (req, res) => {
         res.status(200).send(result)
         return;
     } catch (err) {
-        console.log(err)
-        res.status(400).json(err)
-        return;
+        if (err.message == 'Usuario/contraseña incorrectos') {
+            res.status(400).json('Usuario/contraseña incorrectos')
+            return;
+        }
     }
 
 }
@@ -26,14 +27,29 @@ export const loginUser = async (req, res) => {
 export const signUpUser = async (req, res) => {
     let { user, password } = req.body
     let queryNewUser = `INSERT INTO usuarios (EMAIL,CLAVE,TIPO) VALUES (?,?,'0') `;
+    try {
+        let result = await pool.query(queryNewUser, [user, password])
+        console.log(result)
+        res.status(200).json({ message: 'Usuario creado', insertId: result[0].insertId })
+    } catch (err) {
+        console.log(err.message)
+        res.status(400).json(err.message)
+    }
+}
 
-    let result = await pool.execute(queryNewUser, [user, password], (err, results, fields) => {
-        if (err)
-            res.status(400).json('No se ha podido registrar al usuario.')
-    })
-
-    console.log(result);
-    res.status(200).json({ message: 'Usuario creado' })
+export const signUpUser2 = async (req, res) => {
+    let { idUsuario, nombre, apellidos, dni, tarjsan, fechaNacimiento, sexo, telf, pais, ccaa } = req.body
+    let codPaciente = 'NP0000000001'; //GENERAR CODUSUARIO AQUI
+    let query = `INSERT INTO Pacientes (codPaciente, idUsuario, nombre, apellidos, dni, numTarjSanitaria, fechaNacimiento, sexo, telefono, pais, ccaa ) VALUES ('${codPaciente}','${idUsuario}','${nombre}','${apellidos}','${dni}','${tarjsan}','${fechaNacimiento}','${sexo}','${telf}','${pais}','${ccaa}')`
+    console.log(query)
+    try {
+        let result = await pool.query(query);
+        console.log(result)
+        res.status(200).json({ message: "Usuario registrado correctamente" })
+    } catch (err) {
+        console.log(err)
+        res.status(400).json(err.message)
+    }
 }
 
 
