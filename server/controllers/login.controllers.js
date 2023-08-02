@@ -32,9 +32,7 @@ export const signUpUser = async (req, res) => {
             res.status(400).json('No se ha podido registrar al usuario.')
     })
 
-    console.log("HOLA")
     console.log(result);
-    console.log("HOLA")
     res.status(200).json({ message: 'Usuario creado' })
 }
 
