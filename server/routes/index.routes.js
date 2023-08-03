@@ -9,10 +9,10 @@ router.get('/ping', async (req, res) => {
     try {
         const [rows, fields] = await pool.query('SELECT count(email) from USUARIOS');
         console.log(rows[0]);
-        res.json('Base de datos funcionando');
+        res.json({ message: 'Base de datos funcionando' });
     } catch {
         console.log('BBDD apagada')
-        res.json('Base de datos apagada')
+        res.json({ message: 'Base de datos apagada' })
     }
 })
 
