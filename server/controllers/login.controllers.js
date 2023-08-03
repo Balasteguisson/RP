@@ -16,7 +16,7 @@ export const loginUser = async (req, res) => {
         return;
     } catch (err) {
         if (err.message == 'Usuario/contraseña incorrectos') {
-            res.status(400).json('Usuario/contraseña incorrectos')
+            res.status(500).json('Usuario/contraseña incorrectos')
             return;
         }
     }
@@ -33,7 +33,7 @@ export const signUpUser = async (req, res) => {
         res.status(200).json({ message: 'Usuario creado', insertId: result[0].insertId })
     } catch (err) {
         console.log(err.message)
-        res.status(400).json(err.message)
+        res.status(500).json(err.message)
     }
 }
 
@@ -48,7 +48,7 @@ export const signUpUser2 = async (req, res) => {
         res.status(200).json({ message: "Usuario registrado correctamente" })
     } catch (err) {
         console.log(err)
-        res.status(400).json(err.message)
+        res.status(500).json(err.message)
     }
 }
 
@@ -62,7 +62,7 @@ export const getUsers = async (req, res) => {
         return;
     } catch (err) {
         console.log(err);
-        res.status(400).json('Error en la bbdd' + err)
+        res.status(500).json('Error en la bbdd' + err.message)
     }
 
 }
