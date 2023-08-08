@@ -4,11 +4,13 @@ import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-
 
 function LoginScreen() {
   const insets = useSafeAreaInsets();
-
+  //
   return (
-    <View style={{ flex: 1, paddingTop: insets.top }}>
-      <Text>Aquí va el formulario de login</Text>
-      <Text>Aquí va el boton de login</Text>
+    <View style={{ flex: 1, paddingTop: insets.top, alignItems: 'center' }}>
+      <View style={styles.formularyContainer}>
+        <Text>Aquí va el formulario de login</Text>
+        <Text>Hola!</Text>
+      </View>
     </View>
   )
 }
@@ -23,3 +25,15 @@ export default function App() {
 
   );
 }
+
+
+const styles = StyleSheet.create({
+  formularyContainer: {
+    flex: 1,
+    backgroundColor: 'DarkCyan',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 100
+  }
+})
