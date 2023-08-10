@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 
-function LoginScreen() {
-  const insets = useSafeAreaInsets();
+function LoginScreen () {
+  const insets = useSafeAreaInsets()
   //
   return (
     <View style={{ flex: 1, paddingTop: insets.top, alignItems: 'center' }}>
@@ -15,17 +15,14 @@ function LoginScreen() {
   )
 }
 
-
-export default function App() {
-
+export default function App () {
   return (
     <SafeAreaProvider>
-      <LoginScreen></LoginScreen>
+      <LoginScreen />
     </SafeAreaProvider>
 
-  );
+  )
 }
-
 
 const styles = StyleSheet.create({
   formularyContainer: {
