@@ -3,11 +3,12 @@ import Constants from 'expo-constants'
 import { Text, View, StyleSheet } from 'react-native'
 
 import LoginForm from './Login'
+import ConstantList from './ConstantList'
 
 const Main = () => {
   return (
     <View style={styles.container}>
-      <LoginForm />
+      <ConstantList />
     </View>
   )
 }
