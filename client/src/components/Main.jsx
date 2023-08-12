@@ -1,14 +1,17 @@
 import { React } from 'react'
-import Constants from 'expo-constants'
 import { Text, View, StyleSheet } from 'react-native'
 
 import LoginForm from './Login'
 import ConstantList from './ConstantList'
+import AppBar from './AppBar'
+import AppFooter from './AppFooter'
 
 const Main = () => {
   return (
     <View style={styles.container}>
+      <AppBar />
       <ConstantList />
+      <AppFooter />
     </View>
   )
 }
@@ -16,7 +19,6 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight + 5,
     flexGrow: 1,
     justifyContent: 'center',
     alignContent: 'center',

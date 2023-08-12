@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Button, Alert } from 'react-native'
 
 const LoginForm = () => {
   // const [text, onChangeText] = React.useState()
+  const LogIn = () => {}
   return (
     <View style={loginStyles.loginBox}>
       <Text style={loginStyles.appTittle}>Registro Personal de Salud</Text>
@@ -13,7 +14,7 @@ const LoginForm = () => {
       <View style={loginStyles.buttonContainer}>
         <Button
           title='Iniciar sesión'
-          onPress={() => Alert.alert('Login en construccion')}
+          onPress={LogIn}
           backgroundColor='#1D2332'
           style={loginStyles.loginButton}
         />
