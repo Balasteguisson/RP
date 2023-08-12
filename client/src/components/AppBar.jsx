@@ -2,6 +2,15 @@ import React from 'react'
 
 import { View, StyleSheet, Text } from 'react-native'
 import Constants from 'expo-constants'
+import { Link } from 'react-router-native'
+
+const AppBarTab = ({ active, children, to }) => {
+  return (
+    <Link to={to}>
+      <Text>{children}</Text>
+    </Link>
+  )
+}
 
 const AppBar = () => {
   return (

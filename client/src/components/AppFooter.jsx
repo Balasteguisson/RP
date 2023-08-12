@@ -5,7 +5,7 @@ import { Text, View, StyleSheet } from 'react-native'
 const AppFooter = () => {
   return (
     <View style={styles.footer}>
-      <Text style={styles.footerText}>Menú Principal</Text>
+      <Text style={styles.footerText}>Menú Principal - RP</Text>
     </View>
   )
 }
