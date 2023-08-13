@@ -17,8 +17,9 @@ const ConstantList = () => {
 
 const styles = StyleSheet.create({
   list: {
-    width: '90%',
-    marginTop: 20
+    width: '100%',
+    marginTop: 20,
+    contentContainerStyle: 'center'
   }
 })
 

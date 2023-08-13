@@ -16,6 +16,9 @@ const AppBar = () => {
   return (
     <View style={styles.appBar}>
       <Text style={styles.appBarText}>Menú Principal</Text>
+      <Link to={'/'}>
+        <Text>Cerrar sesión</Text>
+      </Link>
     </View>
   )
 }
@@ -28,7 +31,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
   appBarText: {
     color: 'white'

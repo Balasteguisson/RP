@@ -3,6 +3,7 @@ import React from 'react'
 import { Formik } from 'formik'
 
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
+import { Link } from 'react-router-native'
 
 const initialValues = {
   email: '',
@@ -29,7 +30,12 @@ const LoginForm = () => {
               value={values.password}
               onChangeText={handleChange('password')}
             />
-            <Button title='Iniciar Sesión' onPress={handleSubmit} />
+            <Link to={'/landing'}>
+              <Button title='Iniciar Sesión' onPress={handleSubmit} />
+            </Link>
+            <Link to={'/landing'}>
+              <Text>HOLA- a lista</Text>
+            </Link>
           </View>
         )
       }}
