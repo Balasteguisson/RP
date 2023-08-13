@@ -14,11 +14,10 @@ const AppFooter = () => {
 const styles = StyleSheet.create({
   footer: {
     width: '100%',
-    height: 50,
+    height: 60,
     backgroundColor: '#1D2332',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingLeft: 10
+    alignItems: 'center'
   },
   footerText: {
     color: 'white'

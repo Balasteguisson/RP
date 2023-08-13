@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#1D2332',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 10,
-    paddingTop: Constants.statusBarHeight
+    paddingTop: Constants.statusBarHeight,
+    alignSelf: 'flex-start'
   },
   appBarText: {
     color: 'white'
