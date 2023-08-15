@@ -20,7 +20,7 @@ export const AppBar = () => {
   }
   return (
     <View style={styles.appBar}>
-      <Link>
+      <Link to='/'>
         <Text>Cerrar sesión</Text>
       </Link>
       <Text style={styles.appBarText}>{titulo()}</Text>
