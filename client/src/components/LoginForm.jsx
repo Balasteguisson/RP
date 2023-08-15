@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Formik, useField } from 'formik'
+import { Formik } from 'formik'
 
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
-import { Link, useNavigate } from 'react-router-native'
+import { View, StyleSheet, Button, Text } from 'react-native'
+import { useNavigate } from 'react-router-native'
 
 import FormikInputValue from '../components/FormikInputValue'
 import StyledText from '../components/StyledText.jsx'
@@ -18,21 +18,22 @@ const LoginForm = () => {
   const handleSignUp = () => {
     navigate('/signUp')
   }
+  const handleLogin = (values) => {
+    navigate(`/landing?email=${values.email}`)
+  }
 
   return (
     <View style={styles.container}>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
-          console.log(values)
+          handleLogin(values)
         }}
       >
         {({ handleSubmit }) => {
           return (
             <View style={styles.formContainer}>
-              <View
-                style={{ width: '100%', alignItems: 'center', marginTop: 180 }}
-              >
+              <View style={{ width: '100%', alignItems: 'center' }}>
                 <FormikInputValue
                   name='email'
                   placeholder='E-mail'
@@ -69,9 +70,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'space-around',
     alignItems: 'center',
-    height: '80%',
+    height: '90%',
     width: '80%',
-    borderRadius: 20
+    borderRadius: 20,
+    marginBottom: '20%'
   },
   loginField: {
     width: '80%',
