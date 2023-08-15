@@ -3,6 +3,8 @@ import React from 'react'
 import { Text, View, StyleSheet, Button } from 'react-native'
 import { Formik } from 'formik'
 import FormikInputValue from '../components/FormikInputValue'
+import { useNavigate } from 'react-router-native'
+import StyledText from '../components/StyledText'
 
 const initialValues = {
   email: '',
@@ -10,12 +12,17 @@ const initialValues = {
 }
 
 const SignUpForm = () => {
+  const navigate = useNavigate()
+  const handleRegister = () => {
+    navigate('/register')
+  }
   return (
     <View style={styles.container}>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => {
           console.log(values)
+          handleRegister()
         }}
       >
         {({ handleSubmit }) => {

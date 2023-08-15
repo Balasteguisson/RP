@@ -8,6 +8,7 @@ import AppFooter from './AppFooter'
 import LoginForm from '../pages/LoginForm'
 import ConstantList from './ConstantList'
 import SignUpForm from '../pages/SignUp'
+import RegisterForm from '../pages/SignUpScreen2'
 
 const Main = () => {
   return (
@@ -16,7 +17,8 @@ const Main = () => {
       <Routes>
         <Route path='/' Component={LoginForm} exact></Route>
         <Route path='/landing' Component={ConstantList} exact></Route>
-        <Route path='/register' Component={SignUpForm} exact></Route>
+        <Route path='/signUp' Component={SignUpForm} exact></Route>
+        <Route path='/register' Component={RegisterForm} exact></Route>
       </Routes>
       <AppFooter />
     </View>
