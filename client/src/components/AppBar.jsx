@@ -21,7 +21,7 @@ export const AppBar = () => {
   return (
     <View style={styles.appBar}>
       <Link to='/'>
-        <Text>Cerrar sesión</Text>
+        <Text style={styles.appBarText}>Cerrar sesión</Text>
       </Link>
       <Text style={styles.appBarText}>{titulo()}</Text>
       <Image
@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Constants.statusBarHeight,
     alignSelf: 'flex-start',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingHorizontal: 20
   },
   appBarText: {
     color: 'white'

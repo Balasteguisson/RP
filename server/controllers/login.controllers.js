@@ -4,11 +4,11 @@ import { pool } from '../db.js'
 //Inicio de sesión
 export const loginUser = async (req, res) => {
     console.log(req.body);
-    let { user, password } = req.body
+    let { email, password } = req.body
     let query = `SELECT * FROM Usuarios WHERE email = ? and clave = ?`
-
+    console.log(email, password)
     try {
-        let result = await pool.query(query, [user, password])
+        let result = await pool.query(query, [email, password])
         if (!result[0].length) {
             throw new Error("Usuario/contraseña incorrectos")
         }

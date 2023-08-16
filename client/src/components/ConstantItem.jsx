@@ -12,10 +12,9 @@ const ConstantItem = (props) => {
           <Text style={styles.constTitle}>{props.id}</Text>
           <Text style={styles.consDate}>{props.date}</Text>
         </View>
-        <Text>
+        <Text style={styles.valueText}>
           {props.value[0]} {props.value[1]} {props.unit}
         </Text>
-        <Text>Más</Text>
       </View>
     </TouchableOpacity>
   )
@@ -25,7 +24,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'lightblue',
     width: '100%',
-    padding: 10
+    padding: 10,
+    minHeight: '20%'
   },
   header: {
     width: '100%',
@@ -39,6 +39,9 @@ const styles = StyleSheet.create({
   },
   consDate: {
     alignSelf: 'flex-end'
+  },
+  valueText: {
+    fontSize: 25
   }
 })
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Formik } from 'formik'
 
@@ -14,12 +14,32 @@ const initialValues = {
 }
 
 const LoginForm = () => {
+  const [email, setEmail] = useState([])
+
+  const fetchUser = async (values) => {
+    const url = 'http://localhost:8080/login'
+    console.log(values)
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    setEmail(data)
+    return data
+  }
+
   const navigate = useNavigate()
   const handleSignUp = () => {
     navigate('/signUp')
   }
-  const handleLogin = (values) => {
-    navigate(`/landing?email=${values.email}`)
+
+  const handleLogin = async (values) => {
+    const result = await fetchUser(values)
+    console.log(result)
+    //navigate(`/landing?email=${values.email}`)
   }
 
   return (

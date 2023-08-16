@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 
-import constants from '../exampleData/constants.js'
 import ConstantItem from './ConstantItem.jsx'
 
 const ConstantList = () => {
+  const [constants, setConstants] = useState([])
+
+  const fetchConstants = async () => {
+    const response = await fetch('http://localhost:8080/api/constants')
+  }
+
   return (
     <FlatList
       data={constants}
