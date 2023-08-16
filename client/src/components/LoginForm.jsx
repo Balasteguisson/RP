@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Formik } from 'formik'
 
-import { View, StyleSheet, Button, Text } from 'react-native'
+import { View, StyleSheet, Button, Text, Alert } from 'react-native'
 import { useNavigate } from 'react-router-native'
 
 import FormikInputValue from '../components/FormikInputValue'
@@ -14,11 +14,8 @@ const initialValues = {
 }
 
 const LoginForm = () => {
-  const [email, setEmail] = useState([])
-
   const fetchUser = async (values) => {
     const url = 'http://localhost:8080/login'
-    console.log(values)
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -27,8 +24,7 @@ const LoginForm = () => {
       }
     })
     const data = await response.json()
-    setEmail(data)
-    return data
+    return data[0][0].codPaciente
   }
 
   const navigate = useNavigate()
@@ -37,9 +33,14 @@ const LoginForm = () => {
   }
 
   const handleLogin = async (values) => {
-    const result = await fetchUser(values)
-    console.log(result)
-    //navigate(`/landing?email=${values.email}`)
+    const response = await fetchUser(values)
+    console.log(response)
+    if (response === undefined) {
+      Alert.alert('Usuario o contraseña incorrectos')
+      return
+    } else {
+      navigate(`/landing?email=${values.email}&id=${response}`)
+    }
   }
 
   return (
@@ -57,6 +58,8 @@ const LoginForm = () => {
                 <FormikInputValue
                   name='email'
                   placeholder='E-mail'
+                  keyboardType='email-address'
+                  autoCapitalize='none'
                   style={styles.loginField}
                 ></FormikInputValue>
                 <FormikInputValue

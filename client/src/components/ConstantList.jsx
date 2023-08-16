@@ -3,13 +3,13 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 
 import ConstantItem from './ConstantItem.jsx'
 
-const ConstantList = () => {
+const ConstantList = ({ userId }) => {
   const [constants, setConstants] = useState([])
 
-  const fetchConstants = async () => {
-    const response = await fetch('http://localhost:8080/api/constants')
+  const fetchConstants = async (userId) => {
+    const url = 'http://localhost:8080/constantes'
   }
-
+  console.log('desde lista', userId)
   return (
     <FlatList
       data={constants}

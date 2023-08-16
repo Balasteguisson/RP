@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { View, Text, StyleSheet } from 'react-native'
 import { useLocation } from 'react-router-native'
@@ -8,14 +8,18 @@ import queryString from 'query-string'
 import ConstantList from '../components/ConstantList'
 
 const LandingPage = () => {
+  const [userId, setUserId] = React.useState(null)
+
   const location = useLocation()
   const searchParams = queryString.parse(location.search)
-  const email = searchParams.email
-  console.log(email)
+  useEffect(() => {
+    setUserId(searchParams.id)
+  }, [searchParams.id])
+
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
-      <ConstantList></ConstantList>
+      <ConstantList userId={userId}></ConstantList>
       <AppFooter></AppFooter>
     </View>
   )

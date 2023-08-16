@@ -20,7 +20,6 @@ app.use(morgan('dev'));
 
 //Middleware
 app.use((req, res, next) => {
-    console.log('Pasando por middleware');
     next();
 })
 
