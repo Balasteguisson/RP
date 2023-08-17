@@ -24,16 +24,18 @@ export const loginUser = async (req, res) => {
 
 //Registro de usuario
 export const signUpUser = async (req, res) => {
-    let { user, password } = req.body
+    let { email, password } = req.body
+    console.log(email, password)
+
     let queryNewUser = `INSERT INTO usuarios (EMAIL,CLAVE,TIPO) VALUES (?,?,'0') `;
     try {
-        let result = await pool.query(queryNewUser, [user, password])
-        console.log(result)
+        let result = await pool.query(queryNewUser, [email, password])
         res.status(200).json({ message: 'Usuario creado', insertId: result[0].insertId })
     } catch (err) {
         console.log(err.message)
         res.status(500).json(err.message)
     }
+
 }
 
 export const signUpUser2 = async (req, res) => {

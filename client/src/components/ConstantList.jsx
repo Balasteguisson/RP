@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import React from 'react'
+import { Text, FlatList, StyleSheet } from 'react-native'
 
 import ConstantItem from './ConstantItem.jsx'
+import usePatientConstants from '../hooks/usePatientConstants.js'
 
 const ConstantList = ({ userId }) => {
-  const [constants, setConstants] = useState([])
-
-  const fetchConstants = async (userId) => {
-    const url = 'http://localhost:8080/constantes'
-  }
-  console.log('desde lista', userId)
+  const constants = usePatientConstants(userId)
   return (
     <FlatList
       data={constants}

@@ -5,15 +5,19 @@ const ConstantItem = (props) => {
   const onPress = () => {
     Alert.alert('Toque')
   }
+  console.log('desdeItem')
+  console.log(props)
   return (
     <TouchableOpacity onPress={onPress}>
-      <View key={props.id} style={styles.container}>
+      <View key={props.tipo} style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.constTitle}>{props.id}</Text>
-          <Text style={styles.consDate}>{props.date}</Text>
+          <Text style={styles.constTitle}>{props.tipo}</Text>
+          <Text style={styles.consDate}>
+            {props.fechaMedida ? props.fechaMedida : ''}
+          </Text>
         </View>
         <Text style={styles.valueText}>
-          {props.value[0]} {props.value[1]} {props.unit}
+          {props.valorMedida} {props.valorMedida2} {props.unidades}
         </Text>
       </View>
     </TouchableOpacity>

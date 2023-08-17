@@ -2,11 +2,12 @@ import { pool } from '../db.js'
 
 export const getConstantesVitales = async (req, res) => {
   let codPaciente = req.query.codPaciente
+  let query = 'CALL SpSConstantesLanding(?)'
+  try {
+    let [rows, _] = await pool.execute(query, [codPaciente])
 
-  let query = `SELECT nombreTipo, unidades, valorMinimoHab, valorMaximoHab 
-  FROM TiposConstanteVital TCV 
-  LEFT JOIN RegistroConstanteVital RCV ON RCV.tipoConstante = TCV.idTipos
-  WHERE codPaciente = ?`
-  let result = await pool.query(query, [codPaciente])
-  console.log(result)
+    res.status(200).json(rows[0])
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
 }
