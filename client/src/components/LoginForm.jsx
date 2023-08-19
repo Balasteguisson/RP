@@ -15,7 +15,7 @@ const initialValues = {
 
 const LoginForm = () => {
   const fetchUser = async (values) => {
-    const url = 'http://localhost:8080/login'
+    const url = 'http://192.168.100.250:8080/login'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(values),

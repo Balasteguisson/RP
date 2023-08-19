@@ -15,7 +15,7 @@ router.post('/signUp', signUpUser)
 //ver usuarios
 router.get('/viewUsers', getUsers)
 
-
-router.post('/prueba', signUpUser2)
+//finalizar registro de usuario
+router.post('/register', signUpUser2)
 
 export default router

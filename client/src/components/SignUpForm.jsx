@@ -33,12 +33,9 @@ const SignUpForm = () => {
         email: values.email,
         password: values.password
       }
-      //const response = await fetchSignUp(data)
-      //console.log(response)
-      const userIdCreado = { insertId: 13, message: 'Usuario creado' }
-      console.log(userIdCreado.insertId)
+      const response = await fetchSignUp(data)
       if (userIdCreado.message === 'Usuario creado') {
-        navigate(`/register?userId=${userIdCreado.insertId}`)
+        navigate(`/register?userId=${response.insertId}&email=${values.email}`)
       } else {
         Alert.alert('Error al crear el usuario')
       }

@@ -1,5 +1,5 @@
 import { pool } from '../db.js'
-
+import { v4 as uuidv4 } from 'uuid';
 
 //Inicio de sesión
 export const loginUser = async (req, res) => {
@@ -39,18 +39,24 @@ export const signUpUser = async (req, res) => {
 }
 
 export const signUpUser2 = async (req, res) => {
-    let { idUsuario, nombre, apellidos, dni, tarjsan, fechaNacimiento, sexo, telf, pais, ccaa } = req.body
-    let codPaciente = 'NP0000000001'; //GENERAR CODUSUARIO AQUI
-    let query = `INSERT INTO Pacientes (codPaciente, idUsuario, nombre, apellidos, dni, numTarjSanitaria, fechaNacimiento, sexo, telefono, pais, ccaa ) VALUES ('${codPaciente}','${idUsuario}','${nombre}','${apellidos}','${dni}','${tarjsan}','${fechaNacimiento}','${sexo}','${telf}','${pais}','${ccaa}')`
-    console.log(query)
+    //guille@gmail.com
+    let { userId, nombre, apellidos, dni, numTarjSanitaria, fecNacimiento, sexo, numTelf, pais, ccaa } = req.body
+    fecNacimiento = fecNacimiento.substring(0, 10)
+    console.log(fecNacimiento)
+    let codPaciente = `${nombre.substring(0, 1)}${apellidos.substring(0, 1)}${uuidv4().replace(/-/g, 'x').substring(0, 10)}`.toUpperCase()
+
+    let query = `INSERT INTO Pacientes (codPaciente, idUsuario, nombre, apellidos, dni, numTarjSanitaria, fechaNacimiento, sexo, telefono, pais, ccaa )
+    VALUES ('${codPaciente}','${userId}','${nombre}','${apellidos}','${dni}','${numTarjSanitaria}','${fecNacimiento}','${sexo}','${numTelf}','${pais}','${ccaa}')`
+
     try {
-        let result = await pool.query(query);
-        console.log(result)
+        //let result = await pool.query(query);
+        //console.log(result)
         res.status(200).json({ message: "Usuario registrado correctamente" })
     } catch (err) {
         console.log(err)
         res.status(500).json(err.message)
     }
+
 }
 
 
