@@ -18,10 +18,18 @@ export const AppBar = () => {
         return null
     }
   }
+  const backButton = () => {
+    switch (location.pathname) {
+      case '/register':
+        return 'Atrás'
+      default:
+        return 'Cerrar sesión'
+    }
+  }
   return (
     <View style={styles.appBar}>
       <Link to='/'>
-        <Text style={styles.appBarText}>Cerrar sesión</Text>
+        <Text style={styles.appBarText}>{backButton()}</Text>
       </Link>
       <Text style={styles.appBarText}>{titulo()}</Text>
       <Image

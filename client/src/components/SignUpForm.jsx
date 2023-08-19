@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-import { Text, View, StyleSheet, Button } from 'react-native'
+import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { Formik } from 'formik'
 import FormikInputValue from '../components/FormikInputValue'
-import { useNavigate } from 'react-router-native'
-
+import { Navigate, useNavigate } from 'react-router-native'
 import StyledText from '../components/StyledText'
-
-import useSignUpMail from '../hooks/useSignUpMail'
+import validateForm from '../hooks/validateForm'
 
 const initialValues = {
   email: '',
@@ -17,14 +15,41 @@ const initialValues = {
 //guille@gmail.com
 const SignUpForm = () => {
   const navigate = useNavigate()
-  navigate(`/register?userId=13`)
+  const fetchSignUp = async (values) => {
+    const url = `http://localhost:8080/signUp`
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    return response
+  }
+  //gbg@gmail.com
+  const handleSignUp = async (values) => {
+    if (validateForm(values)) {
+      const data = {
+        email: values.email,
+        password: values.password
+      }
+      //const response = await fetchSignUp(data)
+      //console.log(response)
+      const userIdCreado = { insertId: 13, message: 'Usuario creado' }
+      console.log(userIdCreado.insertId)
+      if (userIdCreado.message === 'Usuario creado') {
+        navigate(`/register?userId=${userIdCreado.insertId}`)
+      } else {
+        Alert.alert('Error al crear el usuario')
+      }
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => {
-          let res = useSignUpMail(values)
-        }}
+        onSubmit={(values) => handleSignUp(values)}
       >
         {({ handleSubmit }) => {
           return (

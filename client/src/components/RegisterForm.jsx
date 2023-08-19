@@ -1,12 +1,15 @@
 //Librerias
 import React from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
-import { Formik } from 'formik'
+import { useState } from 'react'
+import { View, Text, StyleSheet, Button, DatePicker } from 'react-native'
+import { Formik, Field } from 'formik'
 import { useNavigate } from 'react-router-native'
 //Componentes
 import StyledText from '../components/StyledText'
 import FormikInputValue from '../components/FormikInputValue'
 import { AppBar } from '../components/AppBar'
+import DateTimePicker from '@react-native-community/datetimepicker'
+import StyledDateInput from './StyledDateInput'
 
 const initialValues = {
   nombre: '',
@@ -22,10 +25,13 @@ const initialValues = {
 
 const RegisterForm = () => {
   const navigate = useNavigate()
+  const [date, setDate] = useState(new Date())
+  const [mode, setMode] = useState('date')
+  const [show, setShow] = useState(false)
 
   const handleRegister = (values) => {
     console.log(values)
-    navigate('/landing')
+    //navigate('/landing')
   }
   return (
     <>
@@ -33,6 +39,7 @@ const RegisterForm = () => {
         <Formik
           initialValues={initialValues}
           onSubmit={(values) => {
+            values.fecNacimiento = date
             handleRegister(values)
           }}
         >
@@ -59,11 +66,17 @@ const RegisterForm = () => {
                   placeholder='Nº Tarjeta Sanitaria'
                   style={styles.loginField}
                 ></FormikInputValue>
-                <FormikInputValue
-                  name='feNacimiento'
-                  placeholder='Fecha de Nacimiento'
-                  style={styles.loginField}
-                ></FormikInputValue>
+                <DateTimePicker
+                  name='fecNacimiento2'
+                  value={date}
+                  mode='date'
+                  label='Fecha de Nacimiento'
+                  onChange={(event, selDate) => {
+                    setShow(false)
+                    setDate(selDate)
+                  }}
+                />
+
                 <FormikInputValue
                   name='sexo'
                   placeholder='Sexo'
