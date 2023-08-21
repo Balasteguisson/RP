@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-native'
 const ConstantItem = (props) => {
   const navigate = useNavigate()
   const onPress = () => {
-    navigate(`/constantScreen?codPaciente=${props.codPaciente}`)
+    navigate(
+      `/constantScreen?codPaciente=${props.codPaciente}&tipo=${props.tipo}`
+    )
   }
   return (
     <TouchableOpacity onPress={onPress}>

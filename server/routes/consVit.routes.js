@@ -1,9 +1,11 @@
 import { Router } from 'express'
 
-import { getConstantesVitales } from '../controllers/consVit.controllers.js'
+import { getConstantesVitales, postConstanteVital } from '../controllers/consVit.controllers.js'
 
 const router = Router()
 
 router.get('/constantesVitales', getConstantesVitales)
+
+router.post('/registrarMedicionCV', postConstanteVital)
 
 export default router
