@@ -1,12 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { useNavigate } from 'react-router-native'
 
 const ConstantItem = (props) => {
+  const navigate = useNavigate()
   const onPress = () => {
-    Alert.alert('Toque')
+    navigate(`/constantScreen?codPaciente=${props.codPaciente}`)
   }
-  console.log('desdeItem')
-  console.log(props)
   return (
     <TouchableOpacity onPress={onPress}>
       <View key={props.tipo} style={styles.container}>

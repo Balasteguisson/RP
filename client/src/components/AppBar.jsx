@@ -4,7 +4,7 @@ import { View, StyleSheet, Text, Image } from 'react-native'
 import Constants from 'expo-constants'
 import { Link, useLocation } from 'react-router-native'
 
-export const AppBar = () => {
+export const AppBar = (props) => {
   const location = useLocation()
   const titulo = () => {
     switch (location.pathname) {
@@ -12,8 +12,10 @@ export const AppBar = () => {
         return 'Nuevo usuario'
       case '/register':
         return 'Rellena tu información'
-      case '/landing':
+      case `/landing`:
         return 'Menú principal'
+      case '/constantScreen':
+        return 'Registre su medición'
       default:
         return null
     }
@@ -21,15 +23,17 @@ export const AppBar = () => {
   const backButton = () => {
     switch (location.pathname) {
       case '/register':
-        return 'Atrás'
+        return ['Atrás', '/signUp']
+      case '/constantScreen':
+        return ['Atrás', `/landing?id=${props.codPaciente}`]
       default:
-        return 'Cerrar sesión'
+        return ['Cerrar sesión', '/']
     }
   }
   return (
     <View style={styles.appBar}>
-      <Link to='/'>
-        <Text style={styles.appBarText}>{backButton()}</Text>
+      <Link to={`${backButton()[1]}`}>
+        <Text style={styles.appBarText}>{backButton()[0]}</Text>
       </Link>
       <Text style={styles.appBarText}>{titulo()}</Text>
       <Image

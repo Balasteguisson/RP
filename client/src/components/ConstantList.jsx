@@ -11,7 +11,9 @@ const ConstantList = ({ userId }) => {
       data={constants}
       style={styles.list}
       ItemSeparatorComponent={() => <Text />}
-      renderItem={({ item: cons }) => <ConstantItem {...cons} />}
+      renderItem={({ item: cons }) => (
+        <ConstantItem codPaciente={userId} {...cons} />
+      )}
     />
   )
 }

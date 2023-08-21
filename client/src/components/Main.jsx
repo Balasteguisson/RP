@@ -11,6 +11,7 @@ import SignUpScreen from '../pages/SignUp'
 import RegisterScreen from '../pages/SignUpScreen2'
 import LoginScreen from '../pages/LoginScreen'
 import LandingPage from '../pages/LandingPage'
+import ConstantScreen from '../pages/ConstantScreen'
 
 const Main = () => {
   return (
@@ -20,6 +21,7 @@ const Main = () => {
         <Route path='/signUp' Component={SignUpScreen} exact></Route>
         <Route path='/register' Component={RegisterScreen} exact></Route>
         <Route path='/landing' Component={LandingPage} exact></Route>
+        <Route path='/constantScreen' Component={ConstantScreen} exact></Route>
       </Routes>
     </View>
   )

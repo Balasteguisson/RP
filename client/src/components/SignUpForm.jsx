@@ -15,7 +15,7 @@ const initialValues = {
 //guille@gmail.com
 const SignUpForm = () => {
   const navigate = useNavigate()
-  const fetchSignUp = async (values) => {
+  const fetchSignUp = async (data) => {
     const url = `http://localhost:8080/signUp`
     const response = await fetch(url, {
       method: 'POST',
@@ -26,7 +26,6 @@ const SignUpForm = () => {
     })
     return response
   }
-  //gbg@gmail.com
   const handleSignUp = async (values) => {
     if (validateForm(values)) {
       const data = {
@@ -34,8 +33,11 @@ const SignUpForm = () => {
         password: values.password
       }
       const response = await fetchSignUp(data)
-      if (userIdCreado.message === 'Usuario creado') {
-        navigate(`/register?userId=${response.insertId}&email=${values.email}`)
+      const responseJson = await response.json()
+      if (responseJson.message === 'Usuario creado') {
+        navigate(
+          `/register?userId=${responseJson.insertId}&email=${values.email}`
+        )
       } else {
         Alert.alert('Error al crear el usuario')
       }

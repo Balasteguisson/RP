@@ -15,11 +15,10 @@ const LandingPage = () => {
   useEffect(() => {
     setUserId(searchParams.id)
   }, [searchParams.id])
-
   return (
     <View style={styles.container}>
       <AppBar></AppBar>
-      <ConstantList userId={userId}></ConstantList>
+      {userId !== null ? <ConstantList userId={userId}></ConstantList> : null}
       <AppFooter></AppFooter>
     </View>
   )

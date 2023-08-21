@@ -34,7 +34,6 @@ const LoginForm = () => {
 
   const handleLogin = async (values) => {
     const response = await fetchUser(values)
-    console.log(response)
     if (response === undefined) {
       Alert.alert('Usuario o contraseña incorrectos')
       return
