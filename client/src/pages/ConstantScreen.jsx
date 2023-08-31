@@ -26,7 +26,7 @@ const ConstantScreen = () => {
         <View style={styles.meditionsContainer}>
           <Text>MEDICIONEs</Text>
         </View>
-        <NewMedition tipo={tipo} />
+        <NewMedition tipo={tipo} codPaciente={codPaciente} />
       </View>
       <AppFooter />
     </View>

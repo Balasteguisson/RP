@@ -1,12 +1,9 @@
-import { React, useEffect, useState } from 'react'
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native'
+import { React, useState } from 'react'
+import { View, StyleSheet, Button } from 'react-native'
 
 import StyledText from '../components/StyledText'
-import { AppBar } from '../components/AppBar'
-import AppFooter from '../components/AppFooter'
-import { useLocation, useNavigate } from 'react-router-native'
-import queryString from 'query-string'
-import { Form, Formik } from 'formik'
+
+import { Formik } from 'formik'
 import FormikInputValue from '../components/FormikInputValue'
 import DateTimePicker from '@react-native-community/datetimepicker'
 
@@ -16,8 +13,8 @@ const initialValues = {
   fecMedicion: '',
   tipo: ''
 }
-const NewMedition = ({ tipo }) => {
-  const [show, setShow] = useState(false)
+const NewMedition = ({ tipo, codPaciente }) => {
+  const [, setShow] = useState(false)
   const [date, setDate] = useState(new Date())
 
   const handleCreateConstant = async (values) => {
@@ -25,11 +22,14 @@ const NewMedition = ({ tipo }) => {
     adjustedDate.setHours(adjustedDate.getHours() + 2)
     values.tipo = tipo
     values.fecMedicion = adjustedDate
+    values.codPaciente = codPaciente
     console.log(values)
+    const response = await fetchCreateConstant(values)
+    console.log(response)
   }
 
   const fetchCreateConstant = async (values) => {
-    const url = 'http://registrarMedicionCV'
+    const url = 'http://192.168.100.250:8080/registrarMedicionCV'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -37,6 +37,7 @@ const NewMedition = ({ tipo }) => {
         'Content-Type': 'application/json'
       }
     })
+    return response
   }
 
   return (

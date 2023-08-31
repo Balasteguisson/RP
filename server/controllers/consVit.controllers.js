@@ -12,4 +12,17 @@ export const getConstantesVitales = async (req, res) => {
 }
 
 export const postConstanteVital = async (req, res) => {
+  let { fecMedicion, tipo, valor1, valor2, codPaciente } = req.body
+  console.log(req.body)
+  let query = 'INSERT INTO RegistroConstanteVital VALUES (null, ?, ?, ?, ?, ?)'
+  console.log(query)
+
+  /*try {
+    let result = await pool.execute(query, [fecMedicion, tipo, valor1, valor2, codPaciente])
+    res.status(200).json(result)
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
+  */
+
 }

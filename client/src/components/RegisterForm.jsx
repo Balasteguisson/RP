@@ -1,16 +1,15 @@
-//Librerias
-import React from 'react'
-import { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, Button, DatePicker, Alert } from 'react-native'
-import { Formik, Field } from 'formik'
+// Librerias
+import { React, useState, useEffect } from 'react'
+import { View, StyleSheet, Button, Alert } from 'react-native'
+import { Formik } from 'formik'
 import { useNavigate, useLocation } from 'react-router-native'
 import queryString from 'query-string'
-//Componentes
+// Componentes
 import StyledText from '../components/StyledText'
 import FormikInputValue from '../components/FormikInputValue'
-import { AppBar } from '../components/AppBar'
+
 import DateTimePicker from '@react-native-community/datetimepicker'
-import StyledDateInput from './StyledDateInput'
+
 import InputSelect from './SelectInput'
 
 const initialValues = {
@@ -32,8 +31,8 @@ const RegisterForm = () => {
   const navigate = useNavigate()
   const [date, setDate] = useState(new Date())
   const [sexo, setSexo] = useState(null)
-  const [mode, setMode] = useState('date')
-  const [show, setShow] = useState(false)
+  // const [mode, setMode] = useState('date')
+  const [, setShow] = useState(false)
   const [userId, setUserId] = useState(null)
   const [email, setEmail] = useState(null)
 
@@ -42,7 +41,7 @@ const RegisterForm = () => {
   useEffect(() => {
     setUserId(searchParams.userId)
     setEmail(searchParams.email)
-  }, [searchParams.userId])
+  }, [searchParams.userId, searchParams.email])
 
   const fetchRegister = async (values) => {
     const url = 'http://192.168.100.250:8080/register'
@@ -86,22 +85,22 @@ const RegisterForm = () => {
                   name='nombre'
                   placeholder='Nombre'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='apellidos'
                   placeholder='Apellidos'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='dni'
                   placeholder='DNI'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='numTarjSanitaria'
                   placeholder='Nº Tarjeta Sanitaria'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <View style={styles.fecNacBox}>
                   <StyledText>Fecha de Nacimiento</StyledText>
                   <DateTimePicker
@@ -127,18 +126,18 @@ const RegisterForm = () => {
                   name='numTelf'
                   placeholder='Nº de Teléfono'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='pais'
                   placeholder='País'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='ccaa'
                   placeholder='CCAA'
                   style={styles.loginField}
-                ></FormikInputValue>
-                <Button onPress={handleSubmit} title='Regístrate'></Button>
+                />
+                <Button onPress={handleSubmit} title='Regístrate' />
               </View>
             )
           }}
