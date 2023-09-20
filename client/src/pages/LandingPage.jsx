@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { useLocation } from 'react-router-native'
 import { AppBar } from '../components/AppBar'
 import AppFooter from '../components/AppFooter'
@@ -17,9 +17,9 @@ const LandingPage = () => {
   }, [searchParams.id])
   return (
     <View style={styles.container}>
-      <AppBar></AppBar>
-      {userId !== null ? <ConstantList userId={userId}></ConstantList> : null}
-      <AppFooter></AppFooter>
+      <AppBar />
+      {userId !== null ? <ConstantList userId={userId} /> : null}
+      <AppFooter />
     </View>
   )
 }

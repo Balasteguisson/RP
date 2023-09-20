@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { Text, View, StyleSheet, Button, Alert } from 'react-native'
 import { Formik } from 'formik'
 import FormikInputValue from '../components/FormikInputValue'
-import { Navigate, useNavigate } from 'react-router-native'
-import StyledText from '../components/StyledText'
+import { useNavigate } from 'react-router-native'
+
 import validateForm from '../hooks/validateForm'
 
 const initialValues = {
@@ -12,11 +12,11 @@ const initialValues = {
   password: '',
   passwordConfirm: ''
 }
-//guille@gmail.com
+// guille@gmail.com
 const SignUpForm = () => {
   const navigate = useNavigate()
   const fetchSignUp = async (data) => {
-    const url = `http://localhost:8080/signUp`
+    const url = 'http://localhost:8080/signUp'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -61,21 +61,21 @@ const SignUpForm = () => {
                   autoCapitalize='none'
                   keyboardType='email-address'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='password'
                   placeholder='Contraseña'
                   secureTextEntry
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='passwordConfirm'
                   placeholder='Repita su contraseña'
                   secureTextEntry
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
               </View>
-              <Button onPress={handleSubmit} title='Registrarte'></Button>
+              <Button onPress={handleSubmit} title='Registrarte' />
             </View>
           )
         }}

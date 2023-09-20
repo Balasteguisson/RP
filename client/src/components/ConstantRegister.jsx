@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { View, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet, Button, Alert } from 'react-native'
 
 import StyledText from '../components/StyledText'
 
@@ -20,12 +20,21 @@ const NewMedition = ({ tipo, codPaciente }) => {
   const handleCreateConstant = async (values) => {
     const adjustedDate = new Date(date)
     adjustedDate.setHours(adjustedDate.getHours() + 2)
+    const fechaBBDD = `${adjustedDate.getFullYear()}-${
+      adjustedDate.getMonth() + 1
+    }-${adjustedDate.getDate()} ${adjustedDate.getHours()}:${adjustedDate.getMinutes()}`
+
     values.tipo = tipo
-    values.fecMedicion = adjustedDate
+    values.fecMedicion = fechaBBDD
     values.codPaciente = codPaciente
     console.log(values)
     const response = await fetchCreateConstant(values)
-    console.log(response)
+
+    if (response.status === 200) {
+      Alert.alert('Constante creada correctamente')
+    } else {
+      Alert.alert('Error al registrar la constante')
+    }
   }
 
   const fetchCreateConstant = async (values) => {
