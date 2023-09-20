@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-native'
 import queryString from 'query-string'
 
 import NewMedition from '../components/ConstantRegister'
+import MeditionList from '../components/MeditionList'
 
 const ConstantScreen = () => {
   const [codPaciente, setCodPaciente] = useState(null)
@@ -23,9 +24,11 @@ const ConstantScreen = () => {
     <View style={styles.container}>
       <AppBar codPaciente={codPaciente} />
       <View style={styles.screenContent}>
-        <View style={styles.meditionsContainer}>
-          <Text>MEDICIONEs</Text>
-        </View>
+        <MeditionList
+          tipo={tipo}
+          codPaciente={codPaciente}
+          style={styles.meditionsContainer}
+        />
         <NewMedition tipo={tipo} codPaciente={codPaciente} />
       </View>
       <AppFooter />
