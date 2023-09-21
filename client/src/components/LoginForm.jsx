@@ -15,7 +15,8 @@ const initialValues = {
 
 const LoginForm = () => {
   const fetchUser = async (values) => {
-    const url = 'http://192.168.100.250:8080/login'
+    const url = 'http://localhost:8080/login'
+    // const url = 'http://192.168.100.250:8080/login'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(values),
@@ -36,7 +37,6 @@ const LoginForm = () => {
     const response = await fetchUser(values)
     if (response === undefined) {
       Alert.alert('Usuario o contraseña incorrectos')
-      return
     } else {
       navigate(`/landing?email=${values.email}&id=${response}`)
     }
@@ -60,18 +60,18 @@ const LoginForm = () => {
                   keyboardType='email-address'
                   autoCapitalize='none'
                   style={styles.loginField}
-                ></FormikInputValue>
+                />
                 <FormikInputValue
                   name='password'
                   placeholder='Contraseña'
                   secureTextEntry
                   style={styles.loginField}
-                ></FormikInputValue>
-                <Button onPress={handleSubmit} title='Iniciar sesión'></Button>
+                />
+                <Button onPress={handleSubmit} title='Iniciar sesión' />
               </View>
               <View>
                 <StyledText>¿No tienes cuenta?</StyledText>
-                <Button onPress={handleSignUp} title='Regístrate'></Button>
+                <Button onPress={handleSignUp} title='Regístrate' />
               </View>
             </View>
           )
