@@ -8,6 +8,6 @@ router.get('/constantesVitales', getConstantesVitales)
 
 router.post('/registrarMedicionCV', postConstanteVital)
 
-router.post('/getMedicionesPacTipo', getMedicionesPacTipo)
+router.get('/getMedicionesPacTipo', getMedicionesPacTipo)
 
 export default router

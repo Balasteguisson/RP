@@ -28,12 +28,11 @@ export const postConstanteVital = async (req, res) => {
 export const getMedicionesPacTipo = async (req, res) => {
   let codPaciente = req.query.codPaciente
   let tipo = req.query.tipo
-  console.log(codPaciente, tipo)
-  let query = `SELECT * FROM RegistroConstanteVital WHERE codPaciente = '${codPaciente}' AND tipo = (SELECT idTipos FROM TiposConstanteVital WHERE nombreTipo = '${tipo}') ORDER BY fecMedicion DESC`
+  let query = `SELECT * FROM RegistroConstanteVital WHERE codPaciente = '${codPaciente}' AND tipoConstante = (SELECT idTipos FROM TiposConstanteVital WHERE nombreTipo = '${tipo}') ORDER BY fechaRegistro DESC`
   try {
     let [rows, _] = await pool.execute(query, [codPaciente, tipo])
-    res.status(200).json(rows[0])
+    res.status(200).json(rows)
   } catch (err) {
-    res.status(500).json(err.message)
+    res.status(500).json(err)
   }
 }

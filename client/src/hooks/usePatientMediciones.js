@@ -13,7 +13,6 @@ const usePatientMediciones = (codPaciente, tipo) => {
   useEffect(() => {
     fetchMediciones(codPaciente, tipo)
   }, [codPaciente, tipo])
-
   const medicionesList = mediciones.map(medicion => medicion)
 
   return medicionesList

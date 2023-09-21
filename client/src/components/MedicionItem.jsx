@@ -2,16 +2,17 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 
 const MedicionItem = (props) => {
+  console.log('HOLAMI', props)
   return (
     <View>
       <View>
         <Text>{props.tipo}</Text>
-        <Text>{props.fecha}</Text>
+        <Text>{props.fechaRegistro}</Text>
       </View>
       <View>
-        <Text>{props.valor1}</Text>
-        <Text>{props.valor2}</Text>
-        <Text>{props.unidades}</Text>
+        <Text>{props.valorRegistrado1}</Text>
+        <Text>{props.valorRegistrado2}</Text>
+        <Text>{props.unidadesValor}</Text>
       </View>
     </View>
   )

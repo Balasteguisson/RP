@@ -7,7 +7,7 @@ import loginRoutes from './routes/login.routes.js'
 import consVitRoutes from './routes/consVit.routes.js'
 //Otras Librerias
 import morgan from "morgan"
-import moment from "moment"
+
 //var jwt = require ("jwt-simple") --para mas adelante cuando implemente una capa de seguridad
 
 
