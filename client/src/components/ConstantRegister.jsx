@@ -27,6 +27,9 @@ const NewMedition = ({ tipo, codPaciente }) => {
     values.tipo = tipo
     values.fecMedicion = fechaBBDD
     values.codPaciente = codPaciente
+    if (values.valor2 === '') {
+      values.valor2 = null
+    }
     console.log(values)
     const response = await fetchCreateConstant(values)
 

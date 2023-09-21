@@ -13,9 +13,7 @@ export const getConstantesVitales = async (req, res) => {
 
 export const postConstanteVital = async (req, res) => {
   let { fecMedicion, tipo, valor1, valor2, codPaciente } = req.body
-  console.log(req.body)
-  let query = `INSERT INTO RegistroConstanteVital VALUES (null, '${codPaciente}', (select idTipos from TiposConstanteVital where nombreTipo = '${tipo}'), '${fecMedicion}','${valor1}' , '${valor2}', (select unidades1 from TiposConstanteVital where NombreTipo = '${tipo}'))`
-  console.log(query)
+  let query = `INSERT INTO RegistroConstanteVital VALUES (null, '${codPaciente}', (select idTipos from TiposConstanteVital where nombreTipo = '${tipo}'), '${fecMedicion}',${valor1} , ${valor2}, (select unidades1 from TiposConstanteVital where NombreTipo = '${tipo}'))`
 
 
   try {
@@ -25,6 +23,17 @@ export const postConstanteVital = async (req, res) => {
     console.log(err)
     res.status(500).json(err.sqlMessage)
   }
+}
 
-
+export const getMedicionesPacTipo = async (req, res) => {
+  let codPaciente = req.query.codPaciente
+  let tipo = req.query.tipo
+  console.log(codPaciente, tipo)
+  let query = `SELECT * FROM RegistroConstanteVital WHERE codPaciente = '${codPaciente}' AND tipo = (SELECT idTipos FROM TiposConstanteVital WHERE nombreTipo = '${tipo}') ORDER BY fecMedicion DESC`
+  try {
+    let [rows, _] = await pool.execute(query, [codPaciente, tipo])
+    res.status(200).json(rows[0])
+  } catch (err) {
+    res.status(500).json(err.message)
+  }
 }

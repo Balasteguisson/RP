@@ -11,7 +11,7 @@ const usePatientConstants = (userId) => {
   }
   useEffect(() => {
     fetchConstants(userId)
-  }, [])
+  }, [userId])
 
   const constantes = constants.map(constant => constant)
 
