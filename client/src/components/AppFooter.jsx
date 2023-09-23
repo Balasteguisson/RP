@@ -3,16 +3,16 @@ import { Text, View, StyleSheet } from 'react-native'
 import { Link } from 'react-router-native'
 
 // generar un pie de aplicacion con 3 botones de navegacion
-const AppFooter = () => {
+const AppFooter = (props) => {
   return (
     <View style={styles.footer}>
-      <Link>
+      <Link to={`/tratamientos?id=${props.codPaciente}`}>
         <Text style={styles.footerText}>Tratamientos</Text>
       </Link>
-      <Link>
+      <Link to={`/landing?id=${props.codPaciente}`}>
         <Text style={styles.footerText}>Constantes</Text>
       </Link>
-      <Link>
+      <Link to={`/enfermedades?id=${props.codPaciente}`}>
         <Text style={styles.footerText}>Patologías</Text>
       </Link>
     </View>

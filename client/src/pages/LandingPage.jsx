@@ -19,7 +19,7 @@ const LandingPage = () => {
     <View style={styles.container}>
       <AppBar />
       {userId !== null ? <ConstantList userId={userId} /> : null}
-      <AppFooter />
+      <AppFooter codPaciente={userId} />
     </View>
   )
 }

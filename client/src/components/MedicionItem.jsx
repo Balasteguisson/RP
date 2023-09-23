@@ -1,8 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 const MedicionItem = (props) => {
-  console.log('HOLAMI', props)
   return (
     <View style={styles.contenedor}>
       <View style={styles.encabezado}>
