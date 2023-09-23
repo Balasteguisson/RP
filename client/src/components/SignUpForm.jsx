@@ -16,7 +16,8 @@ const initialValues = {
 const SignUpForm = () => {
   const navigate = useNavigate()
   const fetchSignUp = async (data) => {
-    const url = 'http://localhost:8080/signUp'
+    // const url = 'http://localhost:8080/signUp'
+    const url = 'http://192.168.100.250:8080/signUp'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

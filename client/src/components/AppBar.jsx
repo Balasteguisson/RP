@@ -13,9 +13,17 @@ export const AppBar = (props) => {
       case '/register':
         return 'Rellena tu información'
       case '/landing':
-        return 'Menú principal'
+        return 'Constantes vitales'
       case '/constantScreen':
         return 'Registre su medición'
+      case '/enfermedades':
+        return 'Patologías'
+      case '/tratamientos':
+        return 'Tratamientos'
+      case '/registroTratamiento':
+        return 'Registrar tratamiento'
+      case '/registroEnfermedad':
+        return 'Registrar enfermedad'
       default:
         return null
     }
@@ -26,6 +34,10 @@ export const AppBar = (props) => {
         return ['Atrás', '/signUp']
       case '/constantScreen':
         return ['Atrás', `/landing?id=${props.codPaciente}`]
+      case '/registroTratamiento':
+        return ['Atrás', `/tratamientos?id=${props.codPaciente}`]
+      case '/registroEnfermedad':
+        return ['Atrás', `/enfermedades?id=${props.codPaciente}`]
       default:
         return ['Cerrar sesión', '/']
     }
