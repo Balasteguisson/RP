@@ -12,7 +12,7 @@ export const AppBar = (props) => {
         return 'Nuevo usuario'
       case '/register':
         return 'Rellena tu información'
-      case `/landing`:
+      case '/landing':
         return 'Menú principal'
       case '/constantScreen':
         return 'Registre su medición'
@@ -39,7 +39,7 @@ export const AppBar = (props) => {
       <Image
         source={require('../assets/icons/userIcon.png')}
         style={styles.userIcon}
-      ></Image>
+      />
     </View>
   )
 }
@@ -49,7 +49,7 @@ export const AppBarLogin = () => {
     <Image
       style={styles.loginImagen}
       source={require('../assets/images/Logotipo.png')}
-    ></Image>
+    />
   )
 }
 

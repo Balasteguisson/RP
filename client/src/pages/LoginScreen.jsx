@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import LoginForm from '../components/LoginForm'
 import { AppBarLogin } from '../components/AppBar'
 
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
-      <AppBarLogin></AppBarLogin>
-      <LoginForm></LoginForm>
+      <AppBarLogin />
+      <LoginForm />
     </View>
   )
 }

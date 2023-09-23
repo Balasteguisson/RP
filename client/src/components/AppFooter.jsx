@@ -1,11 +1,20 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import { Link } from 'react-router-native'
 
 // generar un pie de aplicacion con 3 botones de navegacion
 const AppFooter = () => {
   return (
     <View style={styles.footer}>
-      <Text style={styles.footerText}>Menú Principal - RP</Text>
+      <Link>
+        <Text style={styles.footerText}>Tratamientos</Text>
+      </Link>
+      <Link>
+        <Text style={styles.footerText}>Constantes</Text>
+      </Link>
+      <Link>
+        <Text style={styles.footerText}>Patologías</Text>
+      </Link>
     </View>
   )
 }
@@ -16,11 +25,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 60,
     backgroundColor: '#1D2332',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     position: 'absolute',
     bottom: 0,
-    width: '100%'
+    flexDirection: 'row'
   },
   footerText: {
     color: 'white'

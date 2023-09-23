@@ -31,7 +31,7 @@ const ConstantScreen = () => {
         />
         <NewMedition tipo={tipo} codPaciente={codPaciente} />
       </View>
-      <AppFooter />
+      <AppFooter codPaciente={codPaciente} />
     </View>
   )
 }
