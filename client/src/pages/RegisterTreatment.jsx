@@ -214,7 +214,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 15,
-    fontWeight: 500
+    fontWeight: 500,
+    borderBottomWidth: 5,
+    borderBottomColor: 'black'
   }
 })
 

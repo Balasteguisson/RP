@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  FlatList,
-  Button
-} from 'react-native'
+import { View, StyleSheet, Text, FlatList, Button } from 'react-native'
 import { AppBar } from '../components/AppBar'
 import { useNavigate, useLocation } from 'react-router-native'
 import queryString from 'query-string'
