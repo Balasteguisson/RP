@@ -42,6 +42,9 @@ const LoginForm = () => {
     }
   }
 
+  const [isFocusedEmail, setIsFocusedEmail] = React.useState(false)
+  const [isFocusedPassword, setIsFocusedPassword] = React.useState(false)
+
   return (
     <View style={styles.container}>
       <Formik
@@ -53,25 +56,45 @@ const LoginForm = () => {
         {({ handleSubmit }) => {
           return (
             <View style={styles.formContainer}>
-              <View style={{ width: '100%', alignItems: 'center' }}>
+              <View style={styles.formsInputsContainer}>
                 <FormikInputValue
                   name='email'
-                  placeholder='E-mail'
                   keyboardType='email-address'
                   autoCapitalize='none'
-                  style={styles.loginField}
+                  placeholder='Email'
+                  style={[
+                    styles.formcontainerElement,
+                    isFocusedEmail ? styles.input_focus : styles.input
+                  ]}
+                  onFocus={() => setIsFocusedEmail(true)}
+                  onBlur={() => setIsFocusedEmail(false)}
                 />
                 <FormikInputValue
                   name='password'
                   placeholder='Contraseña'
                   secureTextEntry
-                  style={styles.loginField}
+                  style={[
+                    styles.formcontainerElement,
+                    isFocusedPassword ? styles.input_focus : styles.input
+                  ]}
+                  onFocus={() => setIsFocusedPassword(true)}
+                  onBlur={() => setIsFocusedPassword(false)}
                 />
-                <Button onPress={handleSubmit} title='Iniciar sesión' />
               </View>
-              <View>
-                <StyledText>¿No tienes cuenta?</StyledText>
-                <Button onPress={handleSignUp} title='Regístrate' />
+              <View style={styles.formsInpuformsButtonsContainertsContainer}>
+                <Button
+                  style={styles.button}
+                  onPress={handleSubmit}
+                  title='Iniciar sesión'
+                />
+                <View style={{ flexDirection: 'row' }}>
+                  <StyledText>¿No tienes cuenta?</StyledText>
+                  <Button
+                    onPress={handleSignUp}
+                    title='Regístrate'
+                    style={styles.buttonRegistrar}
+                  />
+                </View>
               </View>
             </View>
           )
@@ -90,16 +113,51 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     backgroundColor: 'white',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
     height: '90%',
     width: '80%',
     borderRadius: 20,
-    marginBottom: '20%'
+    marginBottom: '15%',
+    padding: 4
   },
-  loginField: {
-    width: '80%',
-    textAlign: 'center'
+  formsInputsContainer: {
+    marginTop: '20%',
+    alignItems: 'center',
+    width: '100%'
+  },
+  formsButtonsContainer: {
+    alignItems: 'center',
+    width: '100%'
+  },
+  formcontainerElement: {
+    width: '70%'
+  },
+  input: {
+    textAlign: 'center',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 1,
+    borderColor: '#1b2333'
+  },
+  input_focus: {
+    textAlign: 'center',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 2,
+    borderColor: '#32456b'
+  },
+  button: {
+    backgroundColor: '#32456b',
+    textAlign: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: '100%'
+  },
+  buttonRegistrar: {
+    fontSize: 12
   }
 })
 

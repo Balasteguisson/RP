@@ -21,7 +21,7 @@ const MedicionItem = (props) => {
 
 const styles = StyleSheet.create({
   contenedor: {
-    backgroundColor: 'red',
+    backgroundColor: 'lightblue',
     display: 'flex',
     height: 80,
     justifyContent: 'space-around',

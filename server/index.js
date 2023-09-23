@@ -5,6 +5,7 @@ import { port } from "./config.js";
 import indexRoutes from './routes/index.routes.js'
 import loginRoutes from './routes/login.routes.js'
 import consVitRoutes from './routes/consVit.routes.js'
+import tratamientoRoutes from './routes/tratamientos.routes.js'
 //Otras Librerias
 import morgan from "morgan"
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 app.use(indexRoutes);
 app.use(loginRoutes);
 app.use(consVitRoutes);
+app.use(tratamientoRoutes);
 
 
 

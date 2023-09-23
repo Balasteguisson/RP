@@ -35,6 +35,7 @@ const ConstantScreen = () => {
     </View>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,

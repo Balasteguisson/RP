@@ -57,9 +57,7 @@ const RegisterForm = () => {
   }
 
   const handleRegister = async (values) => {
-    console.log(values)
     const response = await fetchRegister(values)
-    console.log(response)
     if (response.status === 200) {
       Alert.alert('Usuario creado')
       navigate(`/landing?email=${email}&id=${userId}`)

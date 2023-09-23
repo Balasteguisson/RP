@@ -13,9 +13,13 @@ const initialValues = {
   fecMedicion: '',
   tipo: ''
 }
+
 const NewMedition = ({ tipo, codPaciente }) => {
   const [, setShow] = useState(false)
   const [date, setDate] = useState(new Date())
+
+  const [isFocusedValor1, setIsFocusedValor1] = useState(false)
+  const [isFocusedValor2, setIsFocusedValor2] = useState(false)
 
   const handleCreateConstant = async (values) => {
     const adjustedDate = new Date(date)
@@ -30,7 +34,6 @@ const NewMedition = ({ tipo, codPaciente }) => {
     if (values.valor2 === '') {
       values.valor2 = null
     }
-    console.log(values)
     const response = await fetchCreateConstant(values)
 
     if (response.status === 200) {
@@ -62,9 +65,27 @@ const NewMedition = ({ tipo, codPaciente }) => {
       >
         {({ handleSubmit }) => {
           return (
-            <View>
-              <FormikInputValue name='valor1' placeholder='Valor 1' />
-              <FormikInputValue name='valor2' placeholder='Valor 2' />
+            <View style={styles.container}>
+              <FormikInputValue
+                name='valor1'
+                placeholder='Valor 1'
+                style={[
+                  styles.formcontainerElement,
+                  isFocusedValor1 ? styles.input_focus : styles.input
+                ]}
+                onFocus={() => setIsFocusedValor1(true)}
+                onBlur={() => setIsFocusedValor1(false)}
+              />
+              <FormikInputValue
+                name='valor2'
+                placeholder='Valor 2'
+                style={[
+                  styles.formcontainerElement,
+                  isFocusedValor2 ? styles.input_focus : styles.input
+                ]}
+                onFocus={() => setIsFocusedValor2(true)}
+                onBlur={() => setIsFocusedValor2(false)}
+              />
               <View style={styles.fecMedicionBox}>
                 <StyledText>Fecha de Medida</StyledText>
                 <DateTimePicker
@@ -72,6 +93,7 @@ const NewMedition = ({ tipo, codPaciente }) => {
                   value={date}
                   mode='datetime'
                   label='Fecha de Medición'
+                  style={styles.fechaMedicion}
                   onChange={(event, selDate) => {
                     setShow(false)
                     setDate(selDate)
@@ -88,8 +110,7 @@ const NewMedition = ({ tipo, codPaciente }) => {
 }
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    backgroundColor: 'lightgrey'
+    padding: 10
   },
   screenContent: {
     flex: 1
@@ -99,9 +120,30 @@ const styles = StyleSheet.create({
     height: '60%'
   },
   newMeditionContainer: {
-    backgroundColor: 'blue',
     height: '40%'
   },
-  fecMedicionBox: {}
+  input: {
+    textAlign: 'center',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 1,
+    borderColor: '#1b2333'
+  },
+  input_focus: {
+    textAlign: 'center',
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderTopWidth: 0,
+    borderBottomWidth: 2,
+    borderColor: '#32456b'
+  },
+  fecMedicionBox: {
+    alignItems: 'center'
+  },
+  fechaMedicion: {
+    marginTop: 15,
+    marginBottom: 10
+  }
 })
 export default NewMedition

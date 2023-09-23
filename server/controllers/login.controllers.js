@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 //Inicio de sesión
 export const loginUser = async (req, res) => {
+
     let { email, password } = req.body
     let query = `SELECT codPaciente FROM Usuarios U
     inner join Pacientes P on U.idUsuario = P.idUsuario WHERE email = ? and clave = ?`
@@ -11,6 +12,7 @@ export const loginUser = async (req, res) => {
         if (!result[0].length) {
             throw new Error("Usuario/contraseña incorrectos")
         }
+        res.header("Access-Control-Allow-Origin", "*");
         res.status(200).send(result)
         return;
     } catch (err) {
@@ -24,6 +26,7 @@ export const loginUser = async (req, res) => {
 
 //Registro de usuario
 export const signUpUser = async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     let { email, password } = req.body
     console.log(email, password)
 
@@ -39,6 +42,7 @@ export const signUpUser = async (req, res) => {
 }
 
 export const signUpUser2 = async (req, res) => {
+
     //guille@gmail.com
     let { userId, nombre, apellidos, dni, numTarjSanitaria, fecNacimiento, sexo, numTelf, pais, ccaa } = req.body
     fecNacimiento = fecNacimiento.substring(0, 10)
@@ -51,6 +55,9 @@ export const signUpUser2 = async (req, res) => {
     try {
         //let result = await pool.query(query);
         //console.log(result)
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         res.status(200).json({ message: "Usuario registrado correctamente" })
     } catch (err) {
         console.log(err)
@@ -62,9 +69,13 @@ export const signUpUser2 = async (req, res) => {
 
 //Obtener todos los usuarios
 export const getUsers = async (req, res) => {
+
     let query = 'SELECT * FROM Usuarios'
     try {
         let result = await pool.execute(query, [])
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+        res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         res.status(200).json(result[0])
         return;
     } catch (err) {

@@ -1,6 +1,9 @@
 import { pool } from '../db.js'
 
 export const getConstantesVitales = async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   let codPaciente = req.query.codPaciente
   let query = 'CALL SpSConstantesLanding(?)'
   try {
@@ -12,6 +15,9 @@ export const getConstantesVitales = async (req, res) => {
 }
 
 export const postConstanteVital = async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   let { fecMedicion, tipo, valor1, valor2, codPaciente } = req.body
   let query = `INSERT INTO RegistroConstanteVital VALUES (null, '${codPaciente}', (select idTipos from TiposConstanteVital where nombreTipo = '${tipo}'), '${fecMedicion}',${valor1} , ${valor2}, (select unidades1 from TiposConstanteVital where NombreTipo = '${tipo}'))`
 
@@ -26,6 +32,9 @@ export const postConstanteVital = async (req, res) => {
 }
 
 export const getMedicionesPacTipo = async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   let codPaciente = req.query.codPaciente
   let tipo = req.query.tipo
   let query = `SELECT * FROM RegistroConstanteVital WHERE codPaciente = '${codPaciente}' AND tipoConstante = (SELECT idTipos FROM TiposConstanteVital WHERE nombreTipo = '${tipo}') ORDER BY fechaRegistro DESC`
