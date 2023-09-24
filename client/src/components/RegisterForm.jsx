@@ -58,9 +58,10 @@ const RegisterForm = () => {
 
   const handleRegister = async (values) => {
     const response = await fetchRegister(values)
+    const data = await response.json()
     if (response.status === 200) {
       Alert.alert('Usuario creado')
-      navigate(`/landing?email=${email}&id=${userId}`)
+      navigate(`/landing?email=${email}&id=${data.codPaciente}`)
     } else {
       Alert.alert('Error al crear el usuario')
     }

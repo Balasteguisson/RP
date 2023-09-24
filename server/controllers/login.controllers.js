@@ -7,8 +7,12 @@ export const loginUser = async (req, res) => {
     let { email, password } = req.body
     let query = `SELECT codPaciente FROM Usuarios U
     inner join Pacientes P on U.idUsuario = P.idUsuario WHERE email = ? and clave = ?`
+
+    let query2 = `SELECT codPaciente FROM Usuarios U
+    inner join Pacientes P on U.idUsuario = P.idUsuario WHERE email = '${email}' and clave = '${password}'`
+    console.log(query2)
     try {
-        let result = await pool.query(query, [email, password])
+        let result = await pool.execute(query2)
         if (!result[0].length) {
             throw new Error("Usuario/contraseña incorrectos")
         }
@@ -53,12 +57,11 @@ export const signUpUser2 = async (req, res) => {
     VALUES ('${codPaciente}','${userId}','${nombre}','${apellidos}','${dni}','${numTarjSanitaria}','${fecNacimiento}','${sexo}','${numTelf}','${pais}','${ccaa}')`
 
     try {
-        //let result = await pool.query(query);
-        //console.log(result)
+        let result = await pool.execute(query);
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
         res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        res.status(200).json({ message: "Usuario registrado correctamente" })
+        res.status(200).json({ message: "Usuario registrado correctamente", codPaciente: codPaciente })
     } catch (err) {
         console.log(err)
         res.status(500).json(err.message)
