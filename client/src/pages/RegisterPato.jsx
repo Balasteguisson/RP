@@ -19,54 +19,50 @@ const RegisterTreatmentScreen = () => {
   const [codPaciente, setCodPaciente] = useState(null)
   const [searchText, setSearchText] = useState('')
   const [searchResults, setSearchResults] = useState()
-  const [selectedMedName, setSelectedMedName] = useState('Medicamento')
-  const [selectedMedCod, setSelectedMedCod] = useState('')
+  const [selectedIllnessName, setSelectedIllnessName] = useState('Patología')
+  const [selectedIllnessCIE, setSelectedIllnessCIE] = useState('')
   const [fechaInicio, setFechaInicio] = useState(new Date())
-  const [fechaFin, setFechaFin] = useState(new Date())
+  // const [fechaFin, setFechaFin] = useState(new Date())
   const [, setShow] = useState(false)
   const location = useLocation()
+  const [isFocusedBuscador, setIsFocusedBuscador] = useState(false)
 
   const searchParams = queryString.parse(location.search)
   useEffect(() => {
     setCodPaciente(searchParams.id)
   }, [searchParams.id])
 
-  const [isFocusedBuscador, setIsFocusedBuscador] = useState(false)
-
   const handleSearch = async () => {
-    const url = `https://cima.aemps.es/cima/rest/medicamentos?nombre=${searchText}`
-
+    const url = `http://192.168.100.250:8080/findPatologia?nombre=${searchText}`
     try {
       const response = await fetch(url)
       const resp = await response.json()
-      let resultados = resp.resultados.slice(0, 15)
-      resultados = resultados.map((result) => {
-        return { name: result.nombre, cod: result.nregistro }
-      })
-      setSearchResults(resultados)
+      console.log(resp)
+      setSearchResults(resp)
     } catch (error) {
       console.error(error)
     }
   }
 
   const handleSelect = (item) => {
-    setSelectedMedName(item.name)
-    setSelectedMedCod(item.cod)
+    setSelectedIllnessName(item.nombre)
+    setSelectedIllnessCIE(item.cod)
   }
 
   const handleGuardar = async () => {
-    if (selectedMedCod === '') {
+    if (selectedIllnessName === '') {
       Alert.alert('Debe seleccionar un medicamento')
       return
     }
     const datos = {
-      nombre: selectedMedName,
-      cod: selectedMedCod,
+      nombre: selectedIllnessName,
+      cod: selectedIllnessCIE,
       fechaInicio,
-      fechaFin,
+      // fechaFin,
       codPaciente
     }
-    const url = 'http://192.168.100.250:8080/registrarTratamiento'
+    console.log(datos)
+    const url = 'http://192.168.100.250:8080/postPatologia'
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(datos),
@@ -75,9 +71,9 @@ const RegisterTreatmentScreen = () => {
       }
     })
     if (response.status === 200) {
-      Alert.alert('Tratamiento registrado correctamente')
+      Alert.alert('Patología registrado correctamente')
     } else {
-      Alert.alert('Error al registrar tratamiento')
+      Alert.alert('Error al registrar patología')
     }
   }
 
@@ -87,7 +83,7 @@ const RegisterTreatmentScreen = () => {
       <View style={styles.content}>
         <View style={styles.searchBar}>
           <TextInput
-            placeholder='Buscar medicamento'
+            placeholder='Buscar patología'
             autoCorrect={false}
             style={[
               styles.buscador,
@@ -106,48 +102,51 @@ const RegisterTreatmentScreen = () => {
             data={searchResults}
             renderItem={({ item }) => (
               <TouchableOpacity
-                style={styles.medicamentoCardContainer}
+                style={styles.enfermedadCardContainer}
                 onPress={() => {
                   handleSelect(item)
                 }}
               >
-                <Text style={styles.medicamentoCardTitulo}>{item.name}</Text>
+                <Text style={styles.enfermedadCardTitulo}>{item.nombre}</Text>
               </TouchableOpacity>
             )}
             ItemSeparatorComponent={() => <Text />}
           />
         </View>
-        <View style={styles.datosTratamiento}>
-          <Text style={styles.nombreMedicamento}>{selectedMedName}</Text>
+
+        <View style={styles.datosEnfermedad}>
+          <Text style={styles.nombreEnfermedad}>{selectedIllnessName}</Text>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-around' }}
           >
-            <Text style={{ color: '#444444' }}>Fecha Inicio</Text>
-            <Text style={{ color: '#444444' }}>Fecha Fin</Text>
+            <Text style={{ color: '#444444' }}>Fecha en la que se detectó</Text>
+            {/* <Text style={{ color: '#444444' }}>Fecha Fin</Text> */}
           </View>
           <View style={styles.fechasRow}>
             <DateTimePicker
               name='fechaInicio'
               value={fechaInicio}
               mode='date'
-              label='Inicio toma medicamento'
+              label='Inicio enfermedad'
               onChange={(event, selDate) => {
                 setShow(false)
                 setFechaInicio(selDate)
               }}
             />
+            {/*
             <DateTimePicker
               name='fechaFin'
               value={fechaFin}
               mode='date'
-              label='Fin toma medicamento'
+              label='Fin enfermedad'
               onChange={(event, selDate) => {
                 setShow(false)
                 setFechaFin(selDate)
               }}
             />
+            */}
           </View>
-          <Button title='Guardar tratamiento' onPress={handleGuardar} />
+          <Button title='Guardar patología' onPress={handleGuardar} />
         </View>
       </View>
       <AppFooter codPaciente={codPaciente} />
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15
   },
-  datosTratamiento: {
+  datosEnfermedad: {
     height: '30%',
     width: '100%',
     justifyContent: 'space-around',
@@ -206,13 +205,13 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingHorizontal: 15
   },
-  medicamentoCardContainer: {
+  enfermedadCardContainer: {
     backgroundColor: 'lightblue',
     width: '100%',
     padding: 10,
     borderRadius: 10
   },
-  medicamentoCardTitulo: {
+  enfermedadCardTitulo: {
     width: '100%',
     alignItems: 'center',
     textAlign: 'justify'
@@ -222,11 +221,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingTop: 0
   },
-  nombreMedicamento: {
+  nombreEnfermedad: {
     textAlign: 'center',
     fontSize: 20,
     marginBottom: 15,
     fontWeight: 500,
+    borderBottomWidth: 5,
+    borderBottomColor: 'black',
     height: '30%'
     // backgroundColor: '#E5E4E2'
   }

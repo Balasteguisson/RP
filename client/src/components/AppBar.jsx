@@ -24,6 +24,8 @@ export const AppBar = (props) => {
         return 'Registrar tratamiento'
       case '/registroEnfermedad':
         return 'Registrar enfermedad'
+      case '/registroPatologia':
+        return 'Registrar patología'
       default:
         return null
     }
@@ -36,7 +38,7 @@ export const AppBar = (props) => {
         return ['Atrás', `/landing?id=${props.codPaciente}`]
       case '/registroTratamiento':
         return ['Atrás', `/tratamientos?id=${props.codPaciente}`]
-      case '/registroEnfermedad':
+      case '/registroPatologia':
         return ['Atrás', `/enfermedades?id=${props.codPaciente}`]
       default:
         return ['Cerrar sesión', '/']

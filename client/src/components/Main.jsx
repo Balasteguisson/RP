@@ -17,6 +17,7 @@ import ConstantScreen from '../pages/ConstantScreen'
 import TreatmentPage from '../pages/TreatmentPage'
 import IllnessPage from '../pages/IllnessPage'
 import RegisterTreatment from '../pages/RegisterTreatment'
+import RegisterPato from '../pages/RegisterPato'
 
 const Main = () => {
   return (
@@ -34,6 +35,7 @@ const Main = () => {
           Component={RegisterTreatment}
           exact
         />
+        <Route path='/registroPatologia' Component={RegisterPato} exact />
       </Routes>
     </View>
   )

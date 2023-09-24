@@ -6,6 +6,7 @@ import indexRoutes from './routes/index.routes.js'
 import loginRoutes from './routes/login.routes.js'
 import consVitRoutes from './routes/consVit.routes.js'
 import tratamientoRoutes from './routes/tratamientos.routes.js'
+import diagnosticosRoutes from './routes/diagnosticos.routes.js'
 //Otras Librerias
 import morgan from "morgan"
 
@@ -31,6 +32,7 @@ app.use(indexRoutes);
 app.use(loginRoutes);
 app.use(consVitRoutes);
 app.use(tratamientoRoutes);
+app.use(diagnosticosRoutes);
 
 
 
