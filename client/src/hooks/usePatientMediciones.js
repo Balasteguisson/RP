@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const usePatientMediciones = (codPaciente, tipo) => {
+const usePatientMediciones = (codPaciente, tipo, refresh) => {
   const [mediciones, setMediciones] = useState([])
 
   const fetchMediciones = async (codPaciente, tipo) => {
@@ -13,7 +13,7 @@ const usePatientMediciones = (codPaciente, tipo) => {
 
   useEffect(() => {
     fetchMediciones(codPaciente, tipo)
-  }, [codPaciente, tipo])
+  }, [codPaciente, tipo, refresh])
   const medicionesList = mediciones.map(medicion => medicion)
 
   return medicionesList

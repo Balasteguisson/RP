@@ -87,7 +87,7 @@ const LoginForm = () => {
                   onPress={handleSubmit}
                   title='Iniciar sesión'
                 />
-                <View style={{ flexDirection: 'row' }}>
+                <View>
                   <StyledText>¿No tienes cuenta?</StyledText>
                   <Button
                     onPress={handleSignUp}

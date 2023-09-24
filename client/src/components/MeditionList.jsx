@@ -5,7 +5,11 @@ import usePatientMediciones from '../hooks/usePatientMediciones.js'
 import MedicionItem from './MedicionItem.jsx'
 
 const MeditionList = (props) => {
-  const mediciones = usePatientMediciones(props.codPaciente, props.tipo)
+  const mediciones = usePatientMediciones(
+    props.codPaciente,
+    props.tipo,
+    props.refresh
+  )
   if (mediciones.length === 0) {
     return <Text style={styles.emptyText}>No hay mediciones registradas</Text>
   }

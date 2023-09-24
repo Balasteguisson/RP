@@ -50,7 +50,6 @@ const RegisterTreatmentScreen = () => {
   }
 
   const handleSelect = (item) => {
-    console.log('Seleccionado' + item.name)
     setSelectedMedName(item.name)
     setSelectedMedCod(item.cod)
   }
@@ -75,7 +74,11 @@ const RegisterTreatmentScreen = () => {
         'Content-Type': 'application/json'
       }
     })
-    console.log(response)
+    if (response.status === 200) {
+      Alert.alert('Tratamiento registrado correctamente')
+    } else {
+      Alert.alert('Error al registrar tratamiento')
+    }
   }
 
   return (
@@ -85,6 +88,7 @@ const RegisterTreatmentScreen = () => {
         <View style={styles.searchBar}>
           <TextInput
             placeholder='Buscar medicamento'
+            autoCorrect={false}
             style={[
               styles.buscador,
               isFocusedBuscador ? styles.input_focus : styles.input
@@ -115,6 +119,12 @@ const RegisterTreatmentScreen = () => {
         </View>
         <View style={styles.datosTratamiento}>
           <Text style={styles.nombreMedicamento}>{selectedMedName}</Text>
+          <View
+            style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+          >
+            <Text style={{ color: '#444444' }}>Fecha Inicio</Text>
+            <Text style={{ color: '#444444' }}>Fecha Fin</Text>
+          </View>
           <View style={styles.fechasRow}>
             <DateTimePicker
               name='fechaInicio'
@@ -183,22 +193,24 @@ const styles = StyleSheet.create({
     paddingRight: 15
   },
   searchRes: {
-    height: '65%',
+    height: '55%',
     width: '100%',
     paddingLeft: 15,
     paddingRight: 15
   },
   datosTratamiento: {
-    height: '21%',
+    height: '30%',
     width: '100%',
     justifyContent: 'space-around',
     paddingTop: 15,
-    paddingBottom: 15
+    paddingBottom: 15,
+    paddingHorizontal: 15
   },
   medicamentoCardContainer: {
     backgroundColor: 'lightblue',
     width: '100%',
-    padding: 10
+    padding: 10,
+    borderRadius: 10
   },
   medicamentoCardTitulo: {
     width: '100%',
@@ -216,7 +228,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontWeight: 500,
     borderBottomWidth: 5,
-    borderBottomColor: 'black'
+    borderBottomColor: 'black',
+    height: '30%'
+    // backgroundColor: '#E5E4E2'
   }
 })
 

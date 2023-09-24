@@ -17,7 +17,7 @@ export const postTratamiento = async (req, res) => {
 
 export const getTratamientosPaciente = async (req, res) => {
   const { codPaciente } = req.query
-  const query = `SELECT * FROM TratamientoPaciente WHERE codPaciente = '${codPaciente}'`
+  const query = `SELECT * FROM TratamientoPaciente WHERE codPaciente = '${codPaciente}' ORDER BY fechaFin DESC`
   try {
     let result = await pool.execute(query)
     res.status(200).json(result[0])

@@ -12,14 +12,16 @@ import MeditionList from '../components/MeditionList'
 const ConstantScreen = () => {
   const [codPaciente, setCodPaciente] = useState(null)
   const [tipo, setTipo] = useState(null)
-
+  const [refresh, setRefresh] = useState(false)
   const location = useLocation()
   const searchParams = queryString.parse(location.search)
   useEffect(() => {
     setCodPaciente(searchParams.codPaciente)
     setTipo(searchParams.tipo)
   }, [searchParams.codPaciente, searchParams.tipo])
-
+  const handleNewMedition = () => {
+    setRefresh(!refresh) // Actualiza el estado para forzar la actualización
+  }
   return (
     <View style={styles.container}>
       <AppBar codPaciente={codPaciente} />
@@ -28,8 +30,13 @@ const ConstantScreen = () => {
           tipo={tipo}
           codPaciente={codPaciente}
           style={styles.meditionsContainer}
+          refresh={refresh}
         />
-        <NewMedition tipo={tipo} codPaciente={codPaciente} />
+        <NewMedition
+          tipo={tipo}
+          codPaciente={codPaciente}
+          onNewMedition={handleNewMedition}
+        />
       </View>
       <AppFooter codPaciente={codPaciente} />
     </View>

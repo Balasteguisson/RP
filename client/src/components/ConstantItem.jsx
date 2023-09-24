@@ -9,14 +9,13 @@ const ConstantItem = (props) => {
       `/constantScreen?codPaciente=${props.codPaciente}&tipo=${props.tipo}`
     )
   }
+  const fecha = props.fechaMedida.slice(0, 10)
   return (
     <TouchableOpacity onPress={onPress}>
       <View key={props.tipo} style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.constTitle}>{props.tipo}</Text>
-          <Text style={styles.consDate}>
-            {props.fechaMedida ? props.fechaMedida : ''}
-          </Text>
+          <Text style={styles.consDate}>{props.fechaMedida ? fecha : ''}</Text>
         </View>
         <Text style={styles.valueText}>
           {props.valorMedida} {props.valorMedida2} {props.unidades}

@@ -14,7 +14,7 @@ const initialValues = {
   tipo: ''
 }
 
-const NewMedition = ({ tipo, codPaciente }) => {
+const NewMedition = ({ tipo, codPaciente, onNewMedition }) => {
   const [, setShow] = useState(false)
   const [date, setDate] = useState(new Date())
 
@@ -37,6 +37,7 @@ const NewMedition = ({ tipo, codPaciente }) => {
     const response = await fetchCreateConstant(values)
 
     if (response.status === 200) {
+      onNewMedition()
       Alert.alert('Constante creada correctamente')
     } else {
       Alert.alert('Error al registrar la constante')
