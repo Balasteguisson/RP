@@ -12,7 +12,6 @@ import doctorRoutes from './routes/doctor.routes.js'
 //Otras Librerias
 import morgan from "morgan"
 
-//var jwt = require ("jwt-simple") --para mas adelante cuando implemente una capa de seguridad
 
 
 //Configuraciones
@@ -38,7 +37,7 @@ app.use(diagnosticosRoutes);
 
 
 //Rutas medico
-app.use('/doctor', express.static('doctorclient'))
+app.use('/doctor', express.static('clientemedico'))
 app.use('/doctorV', express.static('doctorVite'))
 app.use(doctorRoutes)
 
