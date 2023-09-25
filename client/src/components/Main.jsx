@@ -18,6 +18,7 @@ import TreatmentPage from '../pages/TreatmentPage'
 import IllnessPage from '../pages/IllnessPage'
 import RegisterTreatment from '../pages/RegisterTreatment'
 import RegisterPato from '../pages/RegisterPato'
+import ShowData from '../pages/ShowData'
 
 const Main = () => {
   return (
@@ -36,6 +37,7 @@ const Main = () => {
           exact
         />
         <Route path='/registroPatologia' Component={RegisterPato} exact />
+        <Route path='/showData' Component={ShowData} exact />
       </Routes>
     </View>
   )

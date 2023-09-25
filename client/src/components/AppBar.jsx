@@ -1,11 +1,12 @@
 import React from 'react'
 
-import { View, StyleSheet, Text, Image } from 'react-native'
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 import Constants from 'expo-constants'
-import { Link, useLocation } from 'react-router-native'
+import { Link, useLocation, useNavigate } from 'react-router-native'
 
 export const AppBar = (props) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const titulo = () => {
     switch (location.pathname) {
       case '/signUp':
@@ -26,6 +27,8 @@ export const AppBar = (props) => {
         return 'Registrar enfermedad'
       case '/registroPatologia':
         return 'Registrar patología'
+      case '/showData':
+        return 'Mostrar resumen HC'
       default:
         return null
     }
@@ -40,9 +43,15 @@ export const AppBar = (props) => {
         return ['Atrás', `/tratamientos?id=${props.codPaciente}`]
       case '/registroPatologia':
         return ['Atrás', `/enfermedades?id=${props.codPaciente}`]
+      case '/showData':
+        return ['Atrás', `/landing?id=${props.codPaciente}`]
       default:
         return ['Cerrar sesión', '/']
     }
+  }
+
+  const handleShowData = () => {
+    navigate(`/showData?id=${props.codPaciente}`)
   }
   return (
     <View style={styles.appBar}>
@@ -50,10 +59,12 @@ export const AppBar = (props) => {
         <Text style={styles.appBarText}>{backButton()[0]}</Text>
       </Link>
       <Text style={styles.appBarText}>{titulo()}</Text>
-      <Image
-        source={require('../assets/icons/userIcon.png')}
-        style={styles.userIcon}
-      />
+      <TouchableOpacity onPress={handleShowData}>
+        <Image
+          source={require('../assets/icons/userIcon.png')}
+          style={styles.userIcon}
+        />
+      </TouchableOpacity>
     </View>
   )
 }

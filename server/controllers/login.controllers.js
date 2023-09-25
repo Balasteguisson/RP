@@ -10,7 +10,7 @@ export const loginUser = async (req, res) => {
 
     let query2 = `SELECT codPaciente FROM Usuarios U
     inner join Pacientes P on U.idUsuario = P.idUsuario WHERE email = '${email}' and clave = '${password}'`
-    console.log(query2)
+    //console.log(query2)
     try {
         let result = await pool.execute(query2)
         if (!result[0].length) {

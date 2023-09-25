@@ -17,7 +17,7 @@ const LandingPage = () => {
   }, [searchParams.id])
   return (
     <View style={styles.container}>
-      <AppBar />
+      <AppBar codPaciente={userId} />
       {userId !== null ? <ConstantList userId={userId} /> : null}
       <AppFooter codPaciente={userId} />
     </View>
