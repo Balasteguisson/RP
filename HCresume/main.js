@@ -43,7 +43,7 @@ const loadInfo = (datosPac) => {
       switch (datos[a].dato) {
         case "nombre":
           nombre.innerHTML = `${datos[a].valor1} ${datos[a].valor2}`
-        case "dni":
+        case "DNI":
           dni.innerHTML = `${datos[a].valor1}`
         case "numTarjSanitaria":
           numtarjsanitaria.innerHTML = `${datos[a].valor1}`
