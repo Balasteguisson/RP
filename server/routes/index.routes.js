@@ -17,12 +17,13 @@ router.get('/ping', async (req, res) => {
 })
 
 router.get('/obtenerResumenHC', async (req, res) => {
-    console.log(req.query.codPaciente)
     let queryBD = `CALL SpSResumenHC('${req.query.codPaciente}')`
-    console.log(queryBD)
+    let queryBD2 = `CALL SpSConstantesLanding('${req.query.codPaciente}')`
     try {
-        let [rows, _] = await pool.execute(queryBD)
-        res.status(200).json(rows[0])
+        let [rows,] = await pool.execute(queryBD)
+        let [rows2,] = await pool.execute(queryBD2)
+        let datos = [rows[0], rows2[0]]
+        res.status(200).json(datos)
     } catch (err) {
         res.status(500).json(err.message)
     }

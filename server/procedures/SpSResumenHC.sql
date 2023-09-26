@@ -24,8 +24,9 @@ BEGIN
     
     INSERT INTO datosPac 
     SELECT 'patologia',DC.descripcion,DP.idDiagnosticosCIE10,dp.fechaDescubierto from DiagnosticosPaciente DP inner join DiagnosticosCIE10 DC on DP.idDiagnosticosCIE10 = DC.clase WHERE DP.codPaciente= codPaciente;
-    
-     SELECT * FROM datosPac;
+    INSERT INTO datosPac
+    SELECT  'consVit', TCV.nombreTipo, RCV.valorRegistrado1, RCV.valorRegistrado2 FROM RegistroConstanteVital RCV INNER JOIN TiposConstanteVital TCV on RCV.tipoConstante = TCV.idTipos where RCV.codPaciente = codPaciente order by RCV.fechaRegistro DESC LIMIT 1;
+    SELECT * FROM datosPac;
 
     DROP TEMPORARY TABLE IF EXISTS datosPac;
     
