@@ -16,4 +16,16 @@ router.get('/ping', async (req, res) => {
     }
 })
 
+router.get('/obtenerResumenHC', async (req, res) => {
+    console.log(req.query.codPaciente)
+    let queryBD = `CALL SpSResumenHC('${req.query.codPaciente}')`
+    console.log(queryBD)
+    try {
+        let [rows, _] = await pool.execute(queryBD)
+        res.status(200).json(rows[0])
+    } catch (err) {
+        res.status(500).json(err.message)
+    }
+})
+
 export default router;
