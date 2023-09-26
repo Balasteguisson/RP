@@ -37,7 +37,7 @@ app.use(diagnosticosRoutes);
 
 
 //Rutas medico
-app.use('/doctor', express.static('clientemedico'))
+app.use('/resumenHC', express.static('HCresume'))
 app.use('/doctorV', express.static('doctorVite'))
 app.use(doctorRoutes)
 

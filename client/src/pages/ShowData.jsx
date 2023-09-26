@@ -8,27 +8,28 @@ import QRCode from 'react-native-qrcode-svg'
 
 const ShowData = () => {
   const [codPaciente, setCodPaciente] = useState(null)
-  const [link, setLink] = useState(null)
   const location = useLocation()
 
   const searchParams = queryString.parse(location.search)
   useEffect(() => {
     setCodPaciente(searchParams.id)
-    setLink('http://192.168.100.250:8080/doctor')
   }, [searchParams.id])
   return (
     <View style={styles.page}>
       <AppBar codPaciente={codPaciente} />
       <View style={styles.container}>
         <View style={styles.qrContainer}>
-          <QRCode value={link} size={300} />
+          <QRCode
+            value={`http://192.168.100.250:8080/resumenHC?id=${codPaciente}`}
+            size={300}
+          />
         </View>
         <Text style={styles.pie}>
           Muestra este QR a tu médico para que pueda ver un resumen de tu
           historia
         </Text>
       </View>
-      <AppFooter />
+      <AppFooter codPaciente={codPaciente} />
     </View>
   )
 }
