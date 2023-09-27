@@ -1,13 +1,14 @@
 import express from "express";
 import { port } from "./config.js";
 
-//Rutas
+//Rutas paciente
 import indexRoutes from './routes/index.routes.js'
 import loginRoutes from './routes/login.routes.js'
 import consVitRoutes from './routes/consVit.routes.js'
 import tratamientoRoutes from './routes/tratamientos.routes.js'
 import diagnosticosRoutes from './routes/diagnosticos.routes.js'
 
+//Rutas medico
 import doctorRoutes from './routes/doctor.routes.js'
 //Otras Librerias
 import morgan from "morgan"
@@ -37,6 +38,13 @@ app.use(diagnosticosRoutes);
 
 
 //Rutas medico
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 app.use('/resumenHC', express.static('HCresume'))
 app.use('/doctorV', express.static('doctorVite'))
 app.use(doctorRoutes)

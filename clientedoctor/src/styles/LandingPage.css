@@ -1,0 +1,30 @@
+.ld-page {
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+  flex-direction: column;
+  background-color: blueviolet;
+}
+
+.ld-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: antiquewhite;
+}
+
+.ld-content {
+  display: flex;
+  flex-grow: 1;
+  background-color: aquamarine;
+}
+
+.ld-content-consult {
+  background-color: red;
+  width: 50%;
+}
+
+.ld-content-patients {
+  background-color: blue;
+  width: 50%;
+}
