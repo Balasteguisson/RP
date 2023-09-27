@@ -6,7 +6,7 @@ const ConsultaCard = (props) => {
   const datos = props.consulta
   const handleClickConsulta = () => {
     navigate(
-      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}`
+      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}&origen=paciente`
     )
   }
   return (
