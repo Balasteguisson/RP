@@ -16,8 +16,8 @@ const Login = () => {
   }
 
   const fetchDatos = async () => {
-    // const url = `http://localhost:8080/getDatosDoctor?codDoctor=${codDoctor}`
-    const url = `http://192.168.100.250:8080/loginDoctor`
+    const url = `http://localhost:8080/loginDoctor`
+    //const url = `http://192.168.100.250:8080/loginDoctor`
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({ username, password }),

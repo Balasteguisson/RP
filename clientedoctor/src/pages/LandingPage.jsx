@@ -1,6 +1,9 @@
+import { useEffect, useState } from 'react'
+
 //Componentes
 import LandingHeader from '../components/LandingHeader'
-
+import ListaPacientes from '../components/ListaPacientes'
+import ListaConsultas from '../components/ListaConsultas'
 import '../styles/LandingPage.css'
 //Hooks
 import useDoctorScreen from '../hooks/useDoctorScreen'
@@ -8,20 +11,30 @@ import useDoctorScreen from '../hooks/useDoctorScreen'
 const LandingPage = () => {
   const params = new URLSearchParams(window.location.search)
   const id = params.get('id')
+  const [isLoading, setIsLoading] = useState(true)
 
-  const datos = useDoctorScreen(id)
+  const { datos, pacientes, consultas } = useDoctorScreen(id)
   const nombre = `${datos.nombre} ${datos.apellido1} ${datos.apellido2}`
+
+  useEffect(() => {
+    if (datos && pacientes && consultas) {
+      setIsLoading(false)
+    }
+  }, [datos, pacientes, consultas])
+
   return (
     <div className='ld-page'>
-      <LandingHeader doctorName={nombre} />
-      <div className='ld-content'>
-        <div className='ld-content-consult'>
-          <h2 className='ld-content-title'>Consultas</h2>
+      {isLoading ? (
+        <div>Cargando...</div>
+      ) : (
+        <div className='ld-page'>
+          <LandingHeader doctorName={nombre} />
+          <div className='ld-content'>
+            <ListaConsultas />
+            <ListaPacientes pacientes={pacientes} idDoctor={id} />
+          </div>
         </div>
-        <div className='ld-content-patients'>
-          <h2 className='ld-content-title'>Pacientes</h2>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

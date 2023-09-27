@@ -2,21 +2,25 @@ import { useEffect, useState } from 'react'
 
 const useDoctorScreen = (codDoctor) => {
   const [datos, setDatos] = useState({})
+  const [pacientes, setPacientes] = useState([])
+  const [consultas, setConsultas] = useState([])
 
-  const fetchDatos = async (codDoctor) => {
-    // const url = `http://localhost:8080/getDatosDoctor?codDoctor=${codDoctor}`
-    const url = `http://192.168.100.250:8080/getDatosDoctor?codDoctor=${codDoctor}`
+  const fetchDatosDoctor = async (codDoctor) => {
+    const url = `http://localhost:8080/getDatosDoctor?codDoctor=${codDoctor}`
+    //const url = `http://192.168.100.250:8080/getDatosDoctor?codDoctor=${codDoctor}`
     const response = await fetch(url)
     const json = await response.json()
-    console.log(json)
-    setDatos(json)
+
+    setDatos(json.datosdoctor)
+    setPacientes(json.pacientes)
+    setConsultas(json.consultas)
   }
 
   useEffect(() => {
-    fetchDatos(codDoctor)
+    fetchDatosDoctor(codDoctor)
   }, [codDoctor])
 
-  return datos
+  return { datos: datos, pacientes: pacientes, consultas: consultas }
 }
 
 export default useDoctorScreen
