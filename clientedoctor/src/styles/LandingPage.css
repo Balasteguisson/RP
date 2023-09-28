@@ -1,37 +1,81 @@
-.ld-page {
-  display: flex;
-  flex-grow: 1;
-  height: 100vh;
-  flex-direction: column;
-  background-color: blueviolet;
-}
-
 .ld-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: antiquewhite;
+  padding: 10px 4%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 3px 3px #2c2a2a41;
+  color: #2b2b2c;
+}
+
+.ld-page {
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
 }
 
 .ld-content {
   display: flex;
   flex-grow: 1;
-  background-color: aquamarine;
+  background-color: #767777;
+  width: 100%;
 }
 
-.ld-content-consult {
-  background-color: red;
-  width: 50%;
-}
-
+.ld-content-consults,
 .ld-content-patients {
-  background-color: blue;
   width: 50%;
+  padding: 2% 4%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ld-content-consults {
+  border-right: 1px solid #2b2b2c;
+}
+
+.ld-content-consults > h1,
+.ld-content-patients > h1 {
+  height: 42px;
+  margin: -22px 0 0 0;
+  font-size: 25px;
+}
+
+.ld-content-list {
+  border-radius: 25px;
+  background-color: #d9d9d9;
+  flex-grow: 1;
 }
 
 .ld-header-aside {
   display: flex;
   align-items: center;
-  width: 15%;
-  justify-content: space-between;
+  justify-content: center;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  /* box-shadow: 2px 1px 6px 0.5px; */
+}
+
+.ld-header-aside button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.ld-header-aside:hover button {
+  pointer-events: all;
+  opacity: 100;
+  cursor: pointer;
+}
+
+.ld-header-aside img {
+  height: 100%;
+  width: 100%;
 }

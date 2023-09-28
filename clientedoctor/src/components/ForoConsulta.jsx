@@ -20,7 +20,6 @@ const ForoConsulta = (props) => {
       })
     })
     if (response.status === 200) {
-      alert('Mensaje enviado correctamente')
       setMensaje('')
     } else {
       alert('Error al enviar mensaje')

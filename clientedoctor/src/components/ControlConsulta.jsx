@@ -6,7 +6,6 @@ import BuscadorDiagnostico from './BuscadorDiagnostico'
 
 const ControlConsulta = (props) => {
   const datos = props.datos
-  console.log(datos)
   const { participantes, setParticipantes } = useConsultaControl(
     props.idConsulta
   )

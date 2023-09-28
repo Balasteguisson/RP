@@ -22,8 +22,8 @@ const PatientData = (props) => {
         <ul className='pd-body-dataList'>
           <li>Region: {datos.datosPaciente.pais}</li>
           <li>Nº teléfono: {datos.datosPaciente.telefono}</li>
-          <li>Peso: {datos.pes.valorRegistrado1} kg</li>
-          <li>Altura: {datos.alt.valorRegistrado1} cm</li>
+          <li>Peso: {datos.pes?.valorRegistrado1} kg</li>
+          <li>Altura: {datos.alt?.valorRegistrado1} cm</li>
         </ul>
       </div>
     </div>
