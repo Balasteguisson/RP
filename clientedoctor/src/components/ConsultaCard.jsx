@@ -14,17 +14,17 @@ const ConsultaCard = (props) => {
       { state: { datosPac: datosPac, datosCons: datos } }
     )
   }
-  console.log('dsde card' + props.user)
+
   return (
     <div onClick={handleClickConsulta}>
       <div className='cc-container'>
         <div className='cc-header'>
-          <p className='cc-header-title'>{datos.fechaInicio}</p>
           {props.origen === 'landing' ? (
             <p className='cc-header-subtitle'>
               {datos.nombrePac} {datos.apellidos}
             </p>
           ) : null}
+          <p className='cc-header-title'>{datos.fechaInicio.slice(0, 10)}</p>
         </div>
         <div className='cc-body'>
           <p className='cc-body-text'>

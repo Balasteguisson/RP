@@ -30,7 +30,7 @@ const PatientConsults = (props) => {
     }
   }
   return (
-    <div className='pc-container'>
+    <div className='pc-list-container'>
       <div className='pc-header'>
         <h2 className='pc-header-title'>Consultas:</h2>
       </div>

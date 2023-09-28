@@ -4,6 +4,8 @@ import PatientConsults from '../components/PatientConsults'
 import { usePatientScreen } from '../hooks/usePatientScreen'
 import { useEffect, useState } from 'react'
 
+import '../styles/PatientPage.css'
+
 const PatientPage = () => {
   const params = new URLSearchParams(window.location.search)
   const id = params.get('id')
@@ -21,18 +23,20 @@ const PatientPage = () => {
   }, [datos, consultas, isLoading])
 
   if (!isLoading) {
-    console.log(datos)
     const nombre = `${datos.datosPaciente.nombre} ${datos.datosPaciente.apellidos}`
+
     return (
-      <div>
+      <div className='pp-container'>
         <PatientHeader paciente={nombre} idDoctor={idDoctor} />
-        <PatientData datos={datos} />
-        <PatientConsults
-          consultas={consultas}
-          codPaciente={id}
-          idDoctor={idDoctor}
-          datos={datos}
-        />
+        <div className='pp-content'>
+          <PatientData datos={datos} />
+          <PatientConsults
+            consultas={consultas}
+            codPaciente={id}
+            idDoctor={idDoctor}
+            datos={datos}
+          />
+        </div>
       </div>
     )
   } else {

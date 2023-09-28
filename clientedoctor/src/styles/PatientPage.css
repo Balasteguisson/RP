@@ -1,0 +1,90 @@
+.pp-container {
+  display: flex;
+  height: 88vh;
+  flex-direction: column;
+  padding: 4%;
+}
+
+.pp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4%;
+  text-shadow: 3px 3px #2c2a2a41;
+  color: #2b2b2c;
+}
+
+.pp-content {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.pp-content > *:first-child {
+  border-right: 1px solid #2b2b2c;
+}
+
+.pd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4%;
+  color: #2b2b2c;
+}
+
+.pd-header-title {
+  margin: 0;
+}
+.pd-header-name {
+  margin: 0;
+}
+
+.pd-body {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  width: 100%;
+  box-shadow: 0 0 5px 0px #2b2b2c;
+  border-radius: 10px;
+}
+
+.pd-body-dataList {
+  padding: 2%;
+  width: 50%;
+}
+
+.pd-body-dataList > li {
+  list-style-type: none;
+  margin-bottom: 5%;
+  border-left: #2b2b2c solid 2px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.pd-body-dataList > li:last-child {
+  margin-bottom: 0;
+}
+
+.pp-content .patientData {
+  width: 50%;
+  padding: 2% 4%;
+}
+
+.pc-list-container {
+  width: 50%;
+  padding: 2% 4%;
+}
+
+.pc-body {
+  flex-grow: 1;
+}
+
+.pc-footer-button {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #1b2333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}

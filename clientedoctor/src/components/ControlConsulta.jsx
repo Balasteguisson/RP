@@ -3,12 +3,11 @@ import useConsultaControl from '../hooks/useConsultaControl'
 import { useEffect, useState } from 'react'
 
 import BuscadorDiagnostico from './BuscadorDiagnostico'
+import '../styles/ControlConsulta.css'
 
 const ControlConsulta = (props) => {
   const datos = props.datos
-  const { participantes, setParticipantes } = useConsultaControl(
-    props.idConsulta
-  )
+  const { participantes } = useConsultaControl(props.idConsulta)
   const [totParticipantes, setTotParticipantes] = useState(2)
 
   const handleUpdate = async () => {
@@ -35,12 +34,14 @@ const ControlConsulta = (props) => {
   }, [datos])
 
   return (
-    <div className='cc-container'>
-      <h1 className='cc-title'>Ajustes consulta</h1>
+    <div className='cco-container'>
+      <div className='cco-header'>
+        <h2 className='cco-title'>Ajustes consulta:</h2>
+      </div>
       <BuscadorDiagnostico datos={datos} idConsulta={props.idConsulta} />
-      <div className='cc-body'>
-        <div className='cc-body-controlParticantes'>
-          <div className='cc-body-limParticipantes'>
+      <div className='cco-body'>
+        <div className='cco-body-controlParticantes'>
+          <div className='cco-body-limParticipantes'>
             <p>Límite de participantes</p>
             <input
               className='cc-body-limParticipantes-input'
@@ -51,14 +52,14 @@ const ControlConsulta = (props) => {
               onChange={(e) => setTotParticipantes(e.target.value)}
             />
           </div>
-          <div className='cc-body-participantes'>
+          <div className='cco-body-participantes'>
             <p>Participantes</p>
-            <div className='cc-body-participantes-list'>
+            <div className='cco-body-participantes-list'>
               {participantes.map((participante) => {
                 return (
                   <div
                     key={participante.idUsuario}
-                    className='cc-body-participantes-list-participante'
+                    className='cco-body-participantes-list-participante'
                   >
                     <p>
                       {participante.nombre} {participante.apellido1}{' '}
@@ -70,11 +71,11 @@ const ControlConsulta = (props) => {
             </div>
           </div>
         </div>
-        <div className='cc-body-botones'>
-          <button className='cc-body-botones-button' onClick={handleUpdate}>
+        <div className='cco-body-botones'>
+          <button className='cco-body-botones-button' onClick={handleUpdate}>
             Actualizar datos
           </button>
-          <button className='cc-body-botones-button' onClick={handleAlta}>
+          <button className='cco-body-botones-button' onClick={handleAlta}>
             Dar alta
           </button>
         </div>

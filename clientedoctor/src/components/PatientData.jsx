@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
+import '../styles/PatientPage.css'
 
 const PatientData = (props) => {
   const datos = props.datos
   return (
-    <div>
+    <div className='patientData'>
       <div className='pd-header'>
         <h2 className='pd-header-title'>Información del paciente:</h2>
         <p className='pd-header-name'>
@@ -16,7 +17,10 @@ const PatientData = (props) => {
           <li>
             Nº de tarjeta sanitaria: {datos.datosPaciente.numTarjSanitaria}
           </li>
-          <li>Fecha de nacimiento: {datos.datosPaciente.fechaNacimiento}</li>
+          <li>
+            Fecha de nacimiento:{' '}
+            {datos.datosPaciente.fechaNacimiento.split('T')[0]}
+          </li>
           <li>Sexo: {datos.datosPaciente.sexo == 0 ? 'Mujer' : 'Hombre'}</li>
         </ul>
         <ul className='pd-body-dataList'>

@@ -140,7 +140,7 @@ export const sendMensaje = async (req, res) => {
   let query = `INSERT INTO mensajesmedicos VALUES (null,'${idDoctor}', '${idConsulta}', '${mensaje}', '${dateISOSTRING}')`
   try {
     let result = await pool.execute(query)
-    console.log(result)
+    res.status(200).json(result[0])
   } catch (error) {
     console.log(error)
     res.status(500).json(error.sqlMessage)

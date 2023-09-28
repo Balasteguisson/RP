@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import '../styles/ConsultPage.css'
 
 //Componentes
 import PatientData from '../components/PatientData'
@@ -41,16 +42,17 @@ const ConsultPage = () => {
     <div className='cs-container'>
       <header className='cs-header'>
         <h1>Consulta</h1>
-        <button onClick={handleVolver}>Volver</button>
+        <button onClick={handleVolver}>&laquo;</button>
       </header>
       {isLoading ? (
         <div>Cargando...</div>
       ) : (
-        <div className='cs-content'>
-          <div className='cs-content-chat'></div>
-          <div className='cs-content-data'>
-            <PatientData datos={datosPac} />
+        <div className='consult-page-content'>
+          <div className='consult-page-content-column'>
             <ForoConsulta idConsulta={idConsulta} idDoctor={idDoctor} />
+          </div>
+          <div className='consult-page-content-column'>
+            <PatientData datos={datosPac} />
             <ControlConsulta datos={datosCons} idConsulta={idConsulta} />
           </div>
         </div>

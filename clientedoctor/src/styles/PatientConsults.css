@@ -1,4 +1,10 @@
 .pc-body {
   height: 300px;
   overflow-y: scroll;
+  background-color: #d9d9d9;
+  border-radius: 25px;
+}
+
+.pc-body > *:not(:last-child) {
+  margin-bottom: 20px;
 }

@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PatientCard = ({ patient, idDoctor }) => {
@@ -9,8 +8,11 @@ const PatientCard = ({ patient, idDoctor }) => {
     navigate(`/paciente?id=${patient.codPaciente}&idDoctor=${idDoctor}`)
   }
   return (
-    <article onClick={handlePatient}>
-      {patient.nombre} -{patient.apellidos} -{patient.codPaciente}
+    <article className='pc-container' onClick={handlePatient}>
+      <div className='pc-name-container'>
+        {patient.nombre} {patient.apellidos}
+      </div>
+      <div className='pc-code-container'>{patient.codPaciente}</div>
     </article>
   )
 }

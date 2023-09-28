@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import '../styles/BuscadorDiagnostico.css'
 import propTypes from 'prop-types'
+import PersInput from './PersInput'
+import '../styles/ControlConsulta.css'
 
 const BuscadorDiagnostico = (props) => {
   const [diagnostico, setDiagnostico] = useState('')
@@ -38,6 +40,8 @@ const BuscadorDiagnostico = (props) => {
     if (updateDiagnostico(cod)) {
       setDiagnostico(nombre)
       setCodDiagnostico(cod)
+      setResultados([])
+      setBusqueda('')
     }
   }
 
@@ -48,26 +52,32 @@ const BuscadorDiagnostico = (props) => {
 
   return (
     <div className='bs-container'>
-      <p>Diagnóstico actual: {diagnostico}</p>
-      <input
-        className='bs-input'
-        type='text'
-        placeholder='Buscar diagnóstico'
-        value={busqueda}
-        onChange={(e) => setBusqueda(e.target.value)}
-      />
-      <button className='bs-boton' onClick={handleBuscar}>
-        Buscar
-      </button>
-      <div className='bs-resultados'>
-        {resultados.map((resultado) => (
-          <p
-            onClick={() => handleSelect(resultado.nombre, resultado.cod)}
-            key={resultado.cod}
-          >
-            {resultado.nombre}
-          </p>
-        ))}
+      <p
+        className='bs-diagnosticoActual'
+        style={{ padding: '0', marginBottom: '1%' }}
+      >
+        Diagnóstico actual: {diagnostico}
+      </p>
+
+      <div className='bs-buscador-container'>
+        <PersInput
+          label='Buscar diagnóstico'
+          onChange={(e) => setBusqueda(e.target.value)}
+          value={busqueda}
+        />
+        <div className='bs-resultados'>
+          {resultados.map((resultado) => (
+            <p
+              onClick={() => handleSelect(resultado.nombre, resultado.cod)}
+              key={resultado.cod}
+            >
+              {resultado.nombre}
+            </p>
+          ))}
+        </div>
+        <button className='bs-boton' onClick={handleBuscar}>
+          Buscar
+        </button>
       </div>
     </div>
   )
