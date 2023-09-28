@@ -150,9 +150,10 @@ export const sendMensaje = async (req, res) => {
 export const fetchMensajes = async (req, res) => {
   let idConsulta = req.query.idConsulta
   let query = `SELECT * FROM mensajesmedicos mm 
-  inner join consultas_has_medicos cm on mm.medicos_idMedico = cm.medicos_idMedico
-  inner join medicos m on cm.medicos_idMedico = m.idUsuario
+  left join consultas_has_medicos cm on mm.medicos_idMedico = cm.medicos_idMedico
+  left join medicos m on cm.medicos_idMedico = m.idUsuario
    WHERE mm.consultas_idConsultas = '${idConsulta}' GROUP BY mm.idMensaje order by mm.fechaEnvio desc`
+  console.log(query)
   try {
     let result = await pool.execute(query)
     res.status(200).json(result[0])

@@ -17,7 +17,6 @@ const ConsultPage = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
-
   let datosPac = useConsultaPage(codPaciente)
   let datosCons = location.state.datosCons
 
@@ -27,11 +26,9 @@ const ConsultPage = () => {
 
   const handleVolver = () => {
     if (origen == 'paciente') {
-      console.log(idDoctor)
-      navigate(`/${origen}?id=$codPaciente}&idDoctor=${idDoctor}`)
+      navigate(`/${origen}?id=${codPaciente}&idDoctor=${idDoctor}`)
     } else if (origen == 'landing') {
-      console.log(idDoctor)
-      navigate(`/landing?id=${datosCons.idUsuario}`)
+      navigate(`/landing?id=${idDoctor}`)
     }
   }
 
@@ -40,7 +37,6 @@ const ConsultPage = () => {
       setIsLoading(false)
     }
   }, [datosPac])
-
   return (
     <div className='cs-container'>
       <header className='cs-header'>

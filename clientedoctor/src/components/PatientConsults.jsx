@@ -6,6 +6,7 @@ import '../styles/PatientConsults.css'
 const PatientConsults = (props) => {
   const navigate = useNavigate()
   let consultas = props.consultas
+  console.log(consultas)
   const crearConsulta = async () => {
     const url = `http://localhost:8080/nuevaConsulta?codPaciente=${props.codPaciente}&idDoctor=${props.idDoctor}`
     const response = await fetch(url)
@@ -13,7 +14,6 @@ const PatientConsults = (props) => {
 
     return { status: response.status, idConsultas: json }
   }
-
   const handleNuevaCons = async () => {
     const nuevaConsulta = await crearConsulta()
     if (nuevaConsulta.status === 200) {
@@ -42,6 +42,7 @@ const PatientConsults = (props) => {
               consulta={consulta}
               datos={props.datos}
               origen='paciente'
+              user={props.idDoctor}
             />
           )
         })}

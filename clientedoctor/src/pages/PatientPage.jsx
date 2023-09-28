@@ -13,12 +13,15 @@ const PatientPage = () => {
   const { datos, consultas } = usePatientScreen(id)
 
   useEffect(() => {
-    if (Object.keys(datos).length != '0') {
+    console.log(isLoading)
+    if (datos.datosPaciente !== undefined) {
+      console.log('Falseado')
       setIsLoading(false)
     }
-  }, [datos, consultas])
+  }, [datos, consultas, isLoading])
 
   if (!isLoading) {
+    console.log(datos)
     const nombre = `${datos.datosPaciente.nombre} ${datos.datosPaciente.apellidos}`
     return (
       <div>
@@ -32,6 +35,8 @@ const PatientPage = () => {
         />
       </div>
     )
+  } else {
+    return <div>Cargando...</div>
   }
 }
 

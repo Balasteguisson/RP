@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ConsultaCard = (props) => {
@@ -7,12 +6,15 @@ const ConsultaCard = (props) => {
   const datos = props.consulta
   const datosPac = props.datos
   const handleClickConsulta = () => {
+    console.log(
+      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${props.user}&origen=${props.origen}`
+    )
     navigate(
-      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}&origen=${props.origen}`,
+      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${props.user}&origen=${props.origen}`,
       { state: { datosPac: datosPac, datosCons: datos } }
     )
   }
-  console.log(datos.descripcion)
+  console.log('dsde card' + props.user)
   return (
     <div onClick={handleClickConsulta}>
       <div className='cc-container'>
@@ -37,7 +39,8 @@ const ConsultaCard = (props) => {
 ConsultaCard.propTypes = {
   consulta: PropTypes.object.isRequired,
   datos: PropTypes.object.isRequired,
-  origen: PropTypes.string.isRequired
+  origen: PropTypes.string.isRequired,
+  user: PropTypes.string.isRequired
 }
 
 export default ConsultaCard

@@ -14,6 +14,7 @@ const ListaConsultas = (props) => {
               key={consulta.idConsultas}
               consulta={consulta}
               origen='landing'
+              user={props.idDoctor}
             />
           )
         })}
@@ -23,7 +24,8 @@ const ListaConsultas = (props) => {
 }
 
 ListaConsultas.propTypes = {
-  consultas: propTypes.array.isRequired
+  consultas: propTypes.array.isRequired,
+  idDoctor: propTypes.string.isRequired
 }
 
 export default ListaConsultas

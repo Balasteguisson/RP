@@ -5,7 +5,6 @@ import propTypes from 'prop-types'
 const ForoConsulta = (props) => {
   const [mensaje, setMensaje] = useState('')
   const mensajes = useForoConsulta(props.idConsulta)
-
   const handleSend = async () => {
     let url = `http://localhost:8080/addMensaje`
     let response = await fetch(url, {
