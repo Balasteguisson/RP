@@ -14,7 +14,6 @@ const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const { datos, pacientes, consultas } = useDoctorScreen(id)
-  console.log(consultas)
   const nombre = `${datos.nombre} ${datos.apellido1} ${datos.apellido2}`
 
   useEffect(() => {

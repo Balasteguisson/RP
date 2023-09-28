@@ -6,7 +6,7 @@ import BuscadorDiagnostico from './BuscadorDiagnostico'
 
 const ControlConsulta = (props) => {
   const datos = props.datos
-
+  console.log(datos)
   const { participantes, setParticipantes } = useConsultaControl(
     props.idConsulta
   )
@@ -30,6 +30,10 @@ const ControlConsulta = (props) => {
     }
   }
   const handleAlta = async () => {}
+
+  useEffect(() => {
+    setTotParticipantes(datos.numeroParticipantesMax)
+  }, [datos])
 
   return (
     <div className='cc-container'>

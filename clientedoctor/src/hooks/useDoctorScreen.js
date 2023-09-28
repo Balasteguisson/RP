@@ -10,7 +10,6 @@ const useDoctorScreen = (codDoctor) => {
     //const url = `http://192.168.100.250:8080/getDatosDoctor?codDoctor=${codDoctor}`
     const response = await fetch(url)
     const json = await response.json()
-    console.log(json)
 
     setDatos(json.datosdoctor)
     setPacientes(json.pacientes)

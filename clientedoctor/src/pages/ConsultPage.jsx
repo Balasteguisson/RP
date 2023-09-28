@@ -17,7 +17,10 @@ const ConsultPage = () => {
   const navigate = useNavigate()
 
   const datosPac = location.state.datosPac
-  const datosCons = location.state.datosCons
+  let datosCons = location.state.datosCons
+  if (datosCons === undefined) {
+    datosCons = {}
+  }
 
   const handleVolver = () => {
     navigate(`/${origen}?id=${codPaciente}&idDoctor=${idDoctor}`)

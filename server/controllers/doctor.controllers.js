@@ -17,15 +17,17 @@ export const landingDoctor = async (req, res) => {
   const idDoctor = req.query.codDoctor
   let query = `SELECT * FROM Medicos WHERE idUsuario = '${idDoctor}'`
   let query2 = `SELECT p.* FROM medicospacientes mp inner join Medicos m on m.idMedico = mp.idMedico inner join pacientes p on mp.codPaciente = p.codPaciente WHERE m.idUsuario = '${idDoctor}'`
-  let query3 = `SELECT * FROM consultas c inner join Medicos m on c.idMedico = m.idUsuario  WHERE m.idUsuario = '${idDoctor}'`
+  let query3 = `SELECT * FROM consultas c inner join Medicos m on c.idMedico = m.idUsuario left join diagnosticosCIE10 d on d.clase = c.diagnostico  WHERE m.idUsuario = '${idDoctor}'`
+  let query4 = `SELECT * FROM consultas c inner join Medicos m on c.idMedico = m.idUsuario left join diagnosticosCIE10 d on d.clase = c.diagnostico  WHERE m.idUsuario != '${idDoctor}'`
   try {
     let result = await pool.execute(query)
     let result2 = await pool.execute(query2)
     let result3 = await pool.execute(query3)
+    let result4 = await pool.execute(query4)
     let datos = {
       datosdoctor: result[0][0],
       pacientes: result2[0],
-      consultas: result3[0]
+      consultas: Object.assign({}, result3[0], result4[0])
     }
     res.status(200).json(datos)
   } catch (err) {
@@ -136,7 +138,6 @@ export const sendMensaje = async (req, res) => {
   let dateWithoutOffsetSpain = new Date(date).toLocaleString('en-US', { timeZone: 'Europe/Madrid' })
   let dateISOSTRING = new Date(dateWithoutOffsetSpain).toISOString().slice(0, 19).replace('T', ' ')
   let query = `INSERT INTO mensajesmedicos VALUES (null,'${idDoctor}', '${idConsulta}', '${mensaje}', '${dateISOSTRING}')`
-  console.log(query)
   try {
     let result = await pool.execute(query)
     console.log(result)
