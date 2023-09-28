@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ConsultaCard = (props) => {
   const navigate = useNavigate()
   const datos = props.consulta
+  const datosPac = props.datos
   const handleClickConsulta = () => {
     navigate(
-      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}&origen=paciente`
+      `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}&origen=paciente`,
+      { state: { datosPac } }
     )
   }
+
   return (
     <div onClick={handleClickConsulta}>
       <div className='cc-container'>
@@ -26,7 +30,8 @@ const ConsultaCard = (props) => {
 }
 
 ConsultaCard.propTypes = {
-  consulta: PropTypes.array.isRequired
+  consulta: PropTypes.object.isRequired,
+  datos: PropTypes.object.isRequired
 }
 
 export default ConsultaCard

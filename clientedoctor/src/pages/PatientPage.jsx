@@ -13,10 +13,10 @@ const PatientPage = () => {
   const { datos, consultas } = usePatientScreen(id)
 
   useEffect(() => {
-    if (Object.keys(datos).length != '0') {
+    if (Object.keys(datos).length != '0' && consultas.length != '0') {
       setIsLoading(false)
     }
-  }, [datos])
+  }, [datos, consultas])
 
   if (!isLoading) {
     const nombre = `${datos.datosPaciente.nombre} ${datos.datosPaciente.apellidos}`
@@ -28,6 +28,7 @@ const PatientPage = () => {
           consultas={consultas}
           codPaciente={id}
           idDoctor={idDoctor}
+          datos={datos}
         />
       </div>
     )

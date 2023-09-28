@@ -1,14 +1,10 @@
 import ConsultaCard from './ConsultaCard'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PatientConsults = (props) => {
   const navigate = useNavigate()
   let consultas = props.consultas
-  useEffect(() => {
-    console.log(consultas)
-  })
 
   const crearConsulta = async () => {
     const url = `http://localhost:8080/nuevaConsulta?codPaciente=${props.codPaciente}&idDoctor=${props.idDoctor}`
@@ -20,7 +16,6 @@ const PatientConsults = (props) => {
 
   const handleNuevaCons = async () => {
     const nuevaConsulta = await crearConsulta()
-    console.log(nuevaConsulta)
     if (nuevaConsulta.status === 200) {
       navigate(
         `/consulta?id=${props.codPaciente}&idConsulta=${nuevaConsulta.idConsultas}&idDoctor=${props.idDoctor}`
@@ -36,7 +31,13 @@ const PatientConsults = (props) => {
       </div>
       <div>
         {consultas.map((consulta) => {
-          return <ConsultaCard key={consulta.codConsulta} consulta={consulta} />
+          return (
+            <ConsultaCard
+              key={consulta.idConsultas}
+              consulta={consulta}
+              datos={props.datos}
+            />
+          )
         })}
       </div>
       <div className='pc-footer'>
@@ -51,6 +52,7 @@ const PatientConsults = (props) => {
 PatientConsults.propTypes = {
   consultas: PropTypes.array.isRequired,
   codPaciente: PropTypes.string.isRequired,
-  idDoctor: PropTypes.string.isRequired
+  idDoctor: PropTypes.string.isRequired,
+  datos: PropTypes.object.isRequired
 }
 export default PatientConsults

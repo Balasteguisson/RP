@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 
 const PatientData = (props) => {
   const datos = props.datos
-  useEffect(() => {
-    console.log(datos)
-  })
   return (
     <div>
       <div className='pd-header'>
