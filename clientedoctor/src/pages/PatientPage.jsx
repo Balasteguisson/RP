@@ -13,7 +13,7 @@ const PatientPage = () => {
   const { datos, consultas } = usePatientScreen(id)
 
   useEffect(() => {
-    if (Object.keys(datos).length != '0' && consultas.length != '0') {
+    if (Object.keys(datos).length != '0') {
       setIsLoading(false)
     }
   }, [datos, consultas])

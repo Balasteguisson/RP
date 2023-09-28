@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ConsultaCard = (props) => {
@@ -9,7 +8,7 @@ const ConsultaCard = (props) => {
   const handleClickConsulta = () => {
     navigate(
       `/consulta?id=${datos.codPaciente}&idConsulta=${datos.idConsultas}&idDoctor=${datos.idMedico}&origen=paciente`,
-      { state: { datosPac } }
+      { state: { datosPac: datosPac, datosCons: datos } }
     )
   }
 

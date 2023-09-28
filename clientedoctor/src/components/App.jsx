@@ -8,7 +8,7 @@ import PatientPage from '../pages/PatientPage.jsx'
 
 const App = () => {
   return (
-    <div>
+    <div className='app-root-container'>
       <Routes>
         <Route path='/' element={<LoginPage />}></Route>
         <Route path='/landing' element={<LandingPage />}></Route>

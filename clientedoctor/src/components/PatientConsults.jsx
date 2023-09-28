@@ -1,6 +1,7 @@
 import ConsultaCard from './ConsultaCard'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+import '../styles/PatientConsults.css'
 
 const PatientConsults = (props) => {
   const navigate = useNavigate()
@@ -18,7 +19,12 @@ const PatientConsults = (props) => {
     const nuevaConsulta = await crearConsulta()
     if (nuevaConsulta.status === 200) {
       navigate(
-        `/consulta?id=${props.codPaciente}&idConsulta=${nuevaConsulta.idConsultas}&idDoctor=${props.idDoctor}`
+        `/consulta?id=${props.codPaciente}&idConsulta=${nuevaConsulta.idConsultas}&idDoctor=${props.idDoctor}&origen=paciente`,
+        {
+          state: {
+            datosPac: props.datos
+          }
+        }
       )
     } else {
       alert('Error al crear consulta')
@@ -29,7 +35,7 @@ const PatientConsults = (props) => {
       <div className='pc-header'>
         <h2 className='pc-header-title'>Consultas:</h2>
       </div>
-      <div>
+      <div className='pc-body'>
         {consultas.map((consulta) => {
           return (
             <ConsultaCard

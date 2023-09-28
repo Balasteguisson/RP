@@ -12,6 +12,7 @@ import diagnosticosRoutes from './routes/diagnosticos.routes.js'
 import doctorRoutes from './routes/doctor.routes.js'
 //Otras Librerias
 import morgan from "morgan"
+import cors from "cors"
 
 
 
@@ -21,6 +22,7 @@ app.use(express.json())
 app.disable('x-powered-by')
 
 app.use(morgan('dev'));
+app.use(cors())
 
 //Middleware
 app.use((req, res, next) => {

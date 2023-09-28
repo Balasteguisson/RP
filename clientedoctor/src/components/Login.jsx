@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PersInput from './PersInput'
 
 const Login = () => {
   const [username, setUsername] = useState('')
@@ -45,22 +46,22 @@ const Login = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Usuario:
-        <input type='text' value={username} onChange={handleUsernameChange} />
-      </label>
-      <br />
-      <label>
-        Contraseña:
-        <input
-          type='password'
-          value={password}
-          onChange={handlePasswordChange}
+    <form className='lg-form-container' onSubmit={handleSubmit}>
+      <div className='lg-form-inputs-container'>
+        <PersInput
+          label='Usuario'
+          onChange={handleUsernameChange}
+          value={username}
         />
-      </label>
-      <br />
-      <button type='submit'>Log In</button>
+        <PersInput
+          label='Contraseña'
+          onChange={handlePasswordChange}
+          value={password}
+        />
+      </div>
+      <div className='lg-form-submit-container'>
+        <button type='submit'>Log In</button>
+      </div>
     </form>
   )
 }

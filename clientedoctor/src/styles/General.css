@@ -1,0 +1,62 @@
+html,
+body,
+#root,
+.app-root-container {
+  background-color: #e6e6e6;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+/* 1 - #1b2333 */
+/* 2 - #32456b */
+
+.field input {
+  background: 0;
+  border: 0;
+  outline: none;
+  width: 80vw;
+  max-width: 400px;
+  font-size: 1.5em;
+  transition: padding 0.3s 0.2s ease;
+}
+
+.field input::placeholder {
+  color: #1b2333;
+  font-weight: bolder;
+}
+
+.field input:focus {
+  padding-bottom: 5px;
+}
+
+.field input:focus + .line:after {
+  transform: scaleX(1);
+}
+
+.field {
+  position: relative;
+  margin-bottom: 13px;
+  height: 31px;
+}
+
+.field .line {
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: -8px;
+  background: #1b2333;
+}
+
+.field .line:after {
+  content: ' ';
+  position: absolute;
+  float: right;
+  width: 100%;
+  height: 3px;
+
+  transform: scalex(0);
+  transition: transform 0.3s ease;
+
+  background: #3b5da1;
+}

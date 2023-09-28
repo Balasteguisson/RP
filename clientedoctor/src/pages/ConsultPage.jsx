@@ -1,7 +1,11 @@
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+
+//Componentes
 import PatientData from '../components/PatientData'
+import ControlConsulta from '../components/ControlConsulta'
+import ForoConsulta from '../components/ForoConsulta'
 
 const ConsultPage = () => {
   const params = new URLSearchParams(window.location.search)
@@ -13,6 +17,7 @@ const ConsultPage = () => {
   const navigate = useNavigate()
 
   const datosPac = location.state.datosPac
+  const datosCons = location.state.datosCons
 
   const handleVolver = () => {
     navigate(`/${origen}?id=${codPaciente}&idDoctor=${idDoctor}`)
@@ -28,9 +33,8 @@ const ConsultPage = () => {
         <div className='cs-content-chat'></div>
         <div className='cs-content-data'>
           <PatientData datos={datosPac} />
-          <div className='cs-content-data-constantes'></div>
-          <div className='cs-content-data-diagnostico'></div>
-          <div className='cs-content-data-consulta'></div>
+          <ForoConsulta idConsulta={idConsulta} idDoctor={idDoctor} />
+          <ControlConsulta datos={datosCons} idConsulta={idConsulta} />
         </div>
       </div>
       {codPaciente} {idConsulta} {idDoctor}

@@ -14,9 +14,11 @@ const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const { datos, pacientes, consultas } = useDoctorScreen(id)
+  console.log(consultas)
   const nombre = `${datos.nombre} ${datos.apellido1} ${datos.apellido2}`
 
   useEffect(() => {
+    console.log(consultas)
     if (datos && pacientes && consultas) {
       setIsLoading(false)
     }
@@ -30,7 +32,7 @@ const LandingPage = () => {
         <div className='ld-page'>
           <LandingHeader doctorName={nombre} />
           <div className='ld-content'>
-            <ListaConsultas />
+            <ListaConsultas idDoctor={id} />
             <ListaPacientes pacientes={pacientes} idDoctor={id} />
           </div>
         </div>
