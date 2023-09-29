@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="styles.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
   </head>
   <body>
@@ -13,18 +13,36 @@
     <main>
       <div id="datosBasicos">
         <div id="datosPaciente">
-          <p id="dni">DNI</p>
-          <p id="numTarjSanitaria">Tarjeta sanitaria</p>
-          <p id="fechaNacimiento">fecha nacimiento + edad</p>
-          <p id="sexo">sexo</p>
-          <p id="telf">telefono</p>
-          <p id="region">region</p>
+          <div class="dataContainer">
+            <p class="dataLabel">DNI:</p>
+            <p id="dni">DNI:</p>
+          </div>
+          <div class="dataContainer">
+            <p class="dataLabel">Fecha de nacimiento:</p>
+            <p id="fechaNacimiento">Fecha de nacimiento:</p>
+          </div>
+          <div class="dataContainer">
+            <p class="dataLabel">Tarj. Sanitaria:</p>
+            <p id="numTarjSanitaria">Tarjeta sanitaria:</p>
+          </div>
+          <div class="dataContainer">
+            <p class="dataLabel">Sexo:</p>
+            <p id="sexo">sexo</p>
+          </div>
+          <div class="dataContainer">
+            <p class="dataLabel">Telf:</p>
+            <p id="telf">Telf:</p>
+          </div>
+          <div class="dataContainer">
+            <p class="dataLabel">Región:</p>
+            <p id="region">region</p>
+          </div>
         </div>
-        <div id="constantesVitales">
-          <ul id="constVit">
-            <li>lista con todas las registradas y la ultima medicion</li>
-          </ul>
-        </div>
+      </div>
+      <div id="constantesVitales">
+        <ul id="constVit">
+          <li>lista con todas las registradas y la ultima medicion</li>
+        </ul>
       </div>
       <div id="medicamentos">
         <ul id="tratamientos">

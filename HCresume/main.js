@@ -39,32 +39,35 @@ const loadInfo = (datosPac) => {
 
   //Datos paciente
   for (let a = 0; a < datos.length; a++) {
-    if (datos[a].tipo === 'basico') {
-      switch (datos[a].dato) {
+    let datosPac = {}
+    datosPac = datos[a]
+    if (datosPac.tipo === 'basico') {
+      switch (datosPac.dato) {
         case "nombre":
-          nombre.innerHTML = `${datos[a].valor1} ${datos[a].valor2}`
+          nombre.innerHTML = `${datosPac.valor1} ${datosPac.valor2}`
         case "DNI":
-          dni.innerHTML = `${datos[a].valor1}`
+          dni.innerHTML = `${datosPac.valor1}`
         case "numTarjSanitaria":
-          numtarjsanitaria.innerHTML = `${datos[a].valor1}`
+          numtarjsanitaria.innerHTML = `${datosPac.valor1}`
         case "fecNac":
-          fechanacimiento.innerHTML = `${datos[a].valor1}`
+          fechanacimiento.innerHTML = `${datosPac.valor1}`
         case "sexo":
-          sexo.innerHTML = `${datos[a].valor1}`
+          sexo.innerHTML = `${datosPac.valor1 == 1 ? 'Hombre' : 'Mujer'}`
         case "telf":
-          telf.innerHTML = `${datos[a].valor1}`
+          telf.innerHTML = `${datosPac.valor1}`
         case "region":
-          region.innerHTML = `${datos[a].valor1} ${datos[a].valor2}`
+          region.innerHTML = `${datosPac.valor1} ${datosPac.valor2}`
       }
     }
-    else if (datos[a].tipo === 'medicamento') {
+    else if (datosPac.tipo === 'medicamento') {
       let li = document.createElement('li')
-      li.innerHTML = `${datos[a].dato} ${datos[a].valor1} ${datos[a].valor2}`
+      li.innerHTML = `${datosPac.dato} ${datosPac.valor1.substring(0, 10)} ${datosPac.valor2.substring(0, 10)}`
+      console.log(datosPac.valor2.substring(0, 10))
       tratamientos.appendChild(li)
     }
-    else if (datos[a].tipo === 'patologia') {
+    else if (datosPac.tipo === 'patologia') {
       let li = document.createElement('li')
-      li.innerHTML = `${datos[a].dato} ${datos[a].valor1} ${datos[a].valor2}`
+      li.innerHTML = `${datosPac.dato} ${datosPac.valor1} ${datosPac.valor2.substring(0, 10)}`
       patologias.appendChild(li)
     }
   }
@@ -72,7 +75,7 @@ const loadInfo = (datosPac) => {
   //Datos constantes vitales
   for (let a = 0; a < datosConsVit.length; a++) {
     let li = document.createElement('li')
-    li.innerHTML = `${datosConsVit[a].tipo} ${datosConsVit[a].valorMedida} ${datosConsVit[a].fechaMedida}`
+    li.innerHTML = `${datosConsVit[a].tipo} ${datosConsVit[a].valorMedida} ${datosConsVit[a].fechaMedida.substring(0, 10)}`
     consVit.appendChild(li)
   }
 }

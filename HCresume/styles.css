@@ -1,0 +1,109 @@
+body {
+  background-color: lightgrey;
+  width: 80%;
+  padding-left: 10%;
+}
+header {
+  width: 100%;
+}
+main {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#datosBasicos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+}
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+  background-color: lightblue;
+}
+.dataContainer :last-child {
+  font-weight: bold;
+  font-size: 20px;
+}
+.dataLabel {
+  text-align: center;
+}
+
+#nombre {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0px 0px 10px 0px black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#constantesVitales {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+#medicamentos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+#patologias {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px black;
+}
+
+#constVit {
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+li {
+  background-color: lightblue;
+  list-style: none;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 2px;
+  border-radius: 5px;
+}
